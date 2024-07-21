@@ -1,4 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+
+
+h1 {
+  font-size: 60px;
+  font-family: "Audiowide", sans-serif;
+  text-align: center;
+  justify-content: center;
+  animation: neon 5s linear infinite;
+  position: relative;
+
+}
+
+
+h2 {
+  font-size: 30px;
+  font-family: "Audiowide", sans-serif;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  margin-top: -40px;
+
+}
+
+
+
+@keyframes neon {
+  0%, 100% {
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 80px #00ff00, 0 0 90px #00ff00, 0 0 100px #00ff00, 0 0 150px #00ff00;
+  }
+  50% {
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 80px #ff00ff, 0 0 90px #ff00ff, 0 0 100px #ff00ff, 0 0 150px #ff00ff;
+  }
+}
+
+
 .banner {
+
   width: 100%;
   height: 100vh;
   text-align: center;
@@ -90,7 +128,7 @@
     z-index: 1;
 }
 
-/* @media screen and (max-width: 1023px) {
+@media screen and (max-width: 1023px) {
   .banner .slider {
     width: 160px;
     height: 200px;
@@ -118,8 +156,8 @@
     text-align: center;
     padding: 0 30px;
   }
-} */
-/* @media screen and (max-width: 767px) {
+} 
+ @media screen and (max-width: 767px) {
   .banner .slider {
     width: 100px;
     height: 150px;
@@ -134,4 +172,4 @@
   .banner .content h1 {
     font-size: 5em;
   }
-} */
+}

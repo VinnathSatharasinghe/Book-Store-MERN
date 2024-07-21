@@ -8,9 +8,10 @@ const HomePage = () => {
 
     <Container>
         <Nav />
-      <Row className="mt-5">
+      <Row className="">
         <Col>
-          <h1></h1>
+        <h1>WINNY BOOK STORE</h1>
+          <h2>Find Your Book With Us</h2>
           <p>
        
           </p>
