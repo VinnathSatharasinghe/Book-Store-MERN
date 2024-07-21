@@ -34,8 +34,9 @@
 .pagers{
   display: flex;
   gap: 10px;
-  justify-content: right; 
-  margin-top: -50px;
+  justify-content: center; /* Center the nav items horizontally */
+  align-items: center; /* Center the nav items vertically */
+  margin-top: -60px; /* Adjust the margin if needed */
 }
 
 /* .navbar-collapse {

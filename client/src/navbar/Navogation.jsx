@@ -8,7 +8,7 @@ const Navigation = () => {
     <Navbar bg="light" >
       <Navbar.Brand>
         <img
-          src="../../public/logos/wadadadawdawdadd.png"
+          src="../../public/logos/wadadadawdawdadd-removebg-preview.png"
           className="d-inline-block align-top"
           alt="Logo"
         />
