@@ -1,20 +1,18 @@
-/* General Navbar Styling */
+
 .navbar {
-  background-color: white; /* Light background color */
+  background-color: white; 
   border-radius: 0px 0px 20px 20px !important;
   
 }
 
-/* Navbar Brand Styling */
 .navbar-brand img {
   width: 160px;
   height: 110px;
   margin-left: 20px;
 
-
 }
 
-/* Navbar Links Styling */
+
 .nav-link {
 
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
@@ -24,11 +22,11 @@
   padding: 10px 20px;
   text-decoration: none;
   align-items: center;
-
 }
 
 .nav-link:hover{
-  color: chartreuse;
+  color: red;
+  transition: 0.8s;
 }
 
 .pagers{
@@ -39,14 +37,12 @@
   margin-top: -60px; /* Adjust the margin if needed */
 }
 
-/* .navbar-collapse {
 
-} */
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .navbar-brand,
   .nav-link {
-    font-size: 1rem; /* Adjust font size for smaller screens */
+    font-size: 1rem; 
   }
 }
