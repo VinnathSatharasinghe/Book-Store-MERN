@@ -1,19 +1,21 @@
 import "../css/home.css"
+import Nav from "../navbar/Navogation"
 
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 const HomePage = () => {
   return (
+
     <Container>
+        <Nav />
       <Row className="mt-5">
         <Col>
-          <h1>Welcome to the Book Store</h1>
+          <h1></h1>
           <p>
-            Your one-stop shop for all your book needs. Browse our collection
-            and find your next great read.
+       
           </p>
           <Button variant="primary" href="/about">
-            Learn More
+
           </Button>
         </Col>
       </Row>
