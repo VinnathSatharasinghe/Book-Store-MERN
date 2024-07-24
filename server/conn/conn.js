@@ -5,8 +5,7 @@ const conn = async () => {
         await mongoose.connect(
             "mongodb+srv://vinnath:ggvinnath@books2024.wxxqwzu.mongodb.net/?retryWrites=true&w=majority&appName=books2024",
             {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
+              
             }
         );
         console.log("Connected to MongoDB");

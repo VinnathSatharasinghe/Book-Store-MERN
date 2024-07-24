@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const User = new mongoose.Schema({
-    usernames:{
+    username:{
         type: String,
         required: true,
         unique: true
@@ -18,7 +18,6 @@ const User = new mongoose.Schema({
     },
     address:{
         type: String,
-        required: true,
     },
     avatar:{
         type: String,
@@ -45,6 +44,6 @@ const User = new mongoose.Schema({
 },
 { timestamps: true}
 );
-// module.exports = mongoose.model("user", user);
-const UserModel = mongoose.model("User", User);
-module.exports = UserModel;
+module.exports = mongoose.model("user", User);
+// const UserModel = mongoose.model("User", User);
+// module.exports = UserModel;
