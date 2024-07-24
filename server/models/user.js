@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
 const User = new mongoose.Schema({
     username:{
@@ -44,6 +45,38 @@ const User = new mongoose.Schema({
 },
 { timestamps: true}
 );
+
+User.methods.generateAuthToken = function() {
+    const token = jwt.sign({ _id: this._id, username: this.username }, process.env.JWT_PRIVATE_KEY,
+        { expiresIn: '1m' }
+    );
+
+    startCountdown(60);
+
+    return token;
+};
+
+// Function to start a live countdown in the console
+function startCountdown(durationInSeconds) {
+    let remainingTime = durationInSeconds;
+
+    const intervalId = setInterval(() => {
+        if (remainingTime <= 0) {
+            console.log("Token has expired!");
+            clearInterval(intervalId);
+        } else {
+            const hours = Math.floor(remainingTime / 60);
+            // const minutes = Math.floor((remainingTime % 3600) / 60);
+            const seconds = remainingTime % 60;
+            console.log(`Time remaining: ${minutes}m ${seconds}s`);
+            remainingTime--;
+        }
+    }, 1000);
+};
+
+
 module.exports = mongoose.model("user", User);
+
+
 // const UserModel = mongoose.model("User", User);
 // module.exports = UserModel;
