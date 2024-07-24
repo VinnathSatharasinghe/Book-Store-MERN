@@ -4,6 +4,10 @@ app.use(express.json());
 require('dotenv').config();
 require("./conn/conn")
 
+const User = require("./models/user");
+const Order = require("./models/order");
+const Book = require("./models/book");
+
 
 app.get("/", (req, res) => {
     res.send("Welcome to the Book Store Backend")
