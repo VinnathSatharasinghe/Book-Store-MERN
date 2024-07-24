@@ -48,10 +48,10 @@ const User = new mongoose.Schema({
 
 User.methods.generateAuthToken = function() {
     const token = jwt.sign({ _id: this._id, username: this.username }, process.env.JWT_PRIVATE_KEY,
-        { expiresIn: '1m' }
+        { expiresIn: '12h' }
     );
 
-    startCountdown(60);
+    startCountdown();
 
     return token;
 };
@@ -65,10 +65,10 @@ function startCountdown(durationInSeconds) {
             console.log("Token has expired!");
             clearInterval(intervalId);
         } else {
-            const hours = Math.floor(remainingTime / 60);
+            // const hours = Math.floor(remainingTime / 60);
             // const minutes = Math.floor((remainingTime % 3600) / 60);
-            const seconds = remainingTime % 60;
-            console.log(`Time remaining: ${minutes}m ${seconds}s`);
+            // const seconds = remainingTime % 60;
+            // console.log(`Time remaining: ${minutes}m ${seconds}s`);
             remainingTime--;
         }
     }, 1000);

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/user")
+const authenticateUser = require('../auth/userAuth');
 const bycript = require("bcrypt");
 const jwt = require('jsonwebtoken');
 //sign up
@@ -52,37 +53,47 @@ router.post("/signup", async (req, res) => {
 router.post("/login", async (req, res) => {
 
     try {
-        const { username, password } = req.body;
+    //     const { username, password } = req.body;
 
-        const user = await User.findOne({ username: username });
+    //     const user = await User.findOne({ username: username });
 
-        if (!user) {
-            return res.status(400).json({ message: "Invalid username" });
-        }
+    //     if (!user) {
+    //         return res.status(400).json({ message: "Invalid username" });
+    //     }
 
-        const isMatch = bycript.compareSync(password, user.password);
+    //     const isMatch = bycript.compareSync(password, user.password);
 
-        if (!isMatch) {
-            return res.status(400).json({ message: "Invalid password" });
-        }
+    //     if (!isMatch) {
+    //         return res.status(400).json({ message: "Invalid password" });
+    //     }
 
-        const token = user.generateAuthToken();
+    //     const token = user.generateAuthToken();
 
-        // Calculate expiration time
-        const decodedToken = jwt.decode(token);
-        const expiresAt = new Date(decodedToken.exp * 1000); // Convert to milliseconds
+    //     const decodedToken = jwt.decode(token);
+    //     const expiresAt = new Date(decodedToken.exp * 1000); // Convert to milliseconds
 
-        return res.status(200).json({ 
-            message: "Logged in successfully", 
-            token,
-            expiresAt 
-        });
+    //     return res.status(200).json({ 
+    //         message: "Logged in successfully", 
+    //         token,
+    //         expiresAt 
+    //     });
+
+    const { username, password } = req.body;
         
+        // Authenticate user
+        const authResult = await authenticateUser(username, password);
 
-        return res.status(200).json({ message: "Logged in successfully", token });
+        if (authResult.token) {
+            // Successful authentication
+            return res.status(200).json(authResult);
+        } else {
+            // Authentication failed
+            return res.status(400).json({ message: authResult.message });
+        }
 
     } catch (error) {
         res.status(500).json({ message: "Server Error" });
+        console.error(error);
     }
 });
 module.exports = router; 
