@@ -17,6 +17,7 @@ app.use("/api/v1", User);
 
 app.get("/", (req, res) => {
     res.send("Welcome to the Book Store Backend")
+    console.log("JWT_SECRET:", process.env.JWT_PRIVATE_KEY);
 });
 
 app.listen(process.env.PORT, ()=>{
