@@ -27,10 +27,20 @@ async function authenticateUser(username, password) {
         const decodedToken = jwt.decode(token);
         const expiresAt = new Date(decodedToken.exp * 1000); // Convert to milliseconds
 
+          // Check if the token is expired
+          if (Date.now() >= expiresAt.getTime()) {
+            throw new Error('Token expired');
+        
+        }
+
+
+
         return {
             message: 'Logged in successfully',
             token,
-            expiresAt
+            expiresAt,
+            id: user._id,
+            username: user.username
         };
     } catch (error) {
         return {
