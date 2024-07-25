@@ -1,13 +1,13 @@
 
 .navbar {
-  background-color: white; 
+  background-color: black; 
   border-radius: 0px 0px 20px 20px !important;
   
 }
 
 .navbar-brand img {
-  width: 160px;
-  height: 110px;
+  width: 120px;
+  height: 90px;
   margin-left: 20px;
 
 }
@@ -18,14 +18,16 @@
   font-family: "Audiowide", sans-serif; 
   font-size: 1.3rem; 
   font-weight: 500;
-  color: black; 
+  color: white; 
   padding: 10px 20px;
   text-decoration: none;
-  align-items: center;
+  align-items: center !important;
+  text-align: right !important;
 }
 
 .nav-link:hover{
   color: red;
+  font-size: 1.4rem; 
   transition: 0.8s;
 }
 

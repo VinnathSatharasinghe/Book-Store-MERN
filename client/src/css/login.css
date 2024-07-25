@@ -1,0 +1,21 @@
+  
+  .login-box {
+    background: rgba(255, 255, 255, 0.1);
+    background-color:black;
+    padding: 90px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    animation: neon-border 1.5s infinite alternate;
+  }
+  
+  @keyframes neon-border {
+    0% {
+      border-color: #ff00ff;
+      box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+    }
+    100% {
+      border-color: #00ffff;
+      box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+    }
+  }
+  

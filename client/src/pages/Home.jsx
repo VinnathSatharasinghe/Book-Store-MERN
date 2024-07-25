@@ -1,30 +1,28 @@
-import "../css/home.css"
-import Nav from "../navbar/Navogation"
+import "../css/home.css";
+import Nav from "../navbar/Navogation";
 
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 const HomePage = () => {
   return (
-
     <Container>
-        <Nav />
+      <Nav />
+      <br></br>
+      <br></br>
       <Row className="">
         <Col>
-        <h1>WINNY BOOK STORE</h1>
+          <h1>WINNY BOOK STORE</h1>
           <h2>Find Your Book With Us</h2>
-          <p>
-       
-          </p>
-          <Button variant="primary" href="/about">
+          <p></p>
+          {/* <Button variant="primary" href="/about">
 
-          </Button>
+          </Button> */}
         </Col>
       </Row>
 
       <Row>
         <div className="banner">
           <div className="slider" style={{ "--quantity": 10 }}>
-
             <div className="item" style={{ "--position": 1 }}>
               <img src="/image/1.jpg" alt="1" />
             </div>
