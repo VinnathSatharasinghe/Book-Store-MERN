@@ -150,21 +150,22 @@ router.post("/login", async (req, res) => {
     const { username, password } = req.body;
 
     if (!username) {
-      return res.status(400).json({ message: "Username is required" });
+      return res.status(400).json({ message: "username_required" });
+      console.log("no user");
     }
     if (!password) {
-      return res.status(400).json({ message: "Password is required" });
+      return res.status(400).json({ message: "password_required" });
     }
 
     const user = await User.findOne({ username: username });
 
     if (!user) {
-      return res.status(400).json({ message: "Invalid username" });
+      return res.status(400).json({ message: "invalid_username" });
     }
 
     const isMatch = bcrypt.compareSync(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid password" });
+      return res.status(400).json({ message: "invalid_password" });
     }
 
     const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_PRIVATE_KEY, {
@@ -175,7 +176,7 @@ router.post("/login", async (req, res) => {
     const expiresAt = new Date(decodedToken.exp * 1000); // Convert to milliseconds
 
     return res.status(200).json({
-      message: "Logged in successfully",
+      message: "login_successfully",
       token,
       expiresAt,
       username,

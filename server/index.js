@@ -5,6 +5,8 @@ require('dotenv').config();
 require("./conn/conn")
 const User = require("./routes/user_route");
 
+const cors = require('cors');
+app.use(cors());
 
 // const order = require("./models/order");
 // const book = require("./models/book");
@@ -13,7 +15,8 @@ const User = require("./routes/user_route");
 // const Order = require("./models/order");
 // const Book = require("./models/book");
 
-app.use("/api/v1", User);
+app.use("/api", User);
+
 
 app.get("/", (req, res) => {
     res.send("Welcome to the Book Store Backend")
