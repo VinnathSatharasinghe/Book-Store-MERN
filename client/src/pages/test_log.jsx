@@ -9,8 +9,8 @@ import "../css/log.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -21,20 +21,22 @@ function Login() {
       .then((result) => {
         console.log(result);
 
-        if (result.data.message == "invalidusername") {
-
-          toast.error("Login Failed. No record existed.", { autoClose: 5000 });
-
-        } else if (result.data.message === "loginsuccessfully") {
-          toast.success("Login successful!", { autoClose: 5000 });
-          navigate("/");
-
-        } else if (result.data.message === "invalidpassword") {
+        if (result.data.message === "nousername") {
+          toast.error("Login Failed. No user.", { autoClose: 5000 });
+        } else if (result.data.message === "caseusername") {
+          toast.error("Login Failed. No user existed.");
+        } else if (result.data.message === "nopassword") {
+          toast.error("Login Failed. No Password");
+        } else if (result.data.message === "casepassword") {
           toast.error("Login Failed. Incorrect Password");
-
+        } else if (result.data.message === "loginok") {
+          toast.success("Login successful!", { autoClose: 5000 });
+          setTimeout(() => {
+            navigate("/");
+          },1000);
+       
         } else {
           toast.error("Login Failed. No record existed.");
-
         }
       })
       .catch((err) => console.log(err));
@@ -51,6 +53,7 @@ function Login() {
               <br />
               <input
                 type="text"
+                name="name"
                 placeholder="Enter Username"
                 autoComplete="off"
                 defaultValue={""}
@@ -63,6 +66,7 @@ function Login() {
               <br />
               <input
                 type="password"
+                name="password"
                 placeholder="Enter Password"
                 autoComplete="off"
                 defaultValue={""}
@@ -75,21 +79,18 @@ function Login() {
             </Button>
 
             <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-          />
-
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+            />
           </Form>
-
-
 
           <Button variant="primary" type="login">
             <a href="/">Home</a>
