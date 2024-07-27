@@ -3,7 +3,9 @@ const app = express();
 app.use(express.json());
 require('dotenv').config();
 require("./conn/conn")
+
 const User = require("./routes/user_route");
+const Book = require("./routes/book_route");
 
 const cors = require('cors');
 app.use(cors());
@@ -16,6 +18,7 @@ app.use(cors());
 // const Book = require("./models/book");
 
 app.use("/api", User);
+app.use("/api", Book);
 
 
 app.get("/", (req, res) => {

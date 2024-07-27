@@ -4,29 +4,27 @@ const book = new mongoose.Schema(
   {
     url: {
       type: String,
-      required: true,
     },
     title: {
       type: String,
       required: true,
     },
     author: {
-        type: String,
-        required: true,
-      },
-      price: {
-        type: String,
-        required: true,
-      },
-      desc: {
-        type: String,
-        required: true,
-      },
-      language: {
-        type: String,
-        required: true,
-      },
+      type: String,
 
+    },
+    price: {
+      type: String,
+
+    },
+    desc: {
+      type: String,
+
+    },
+    language: {
+      type: String,
+   
+    },
   },
   { timestamps: true }
 );
