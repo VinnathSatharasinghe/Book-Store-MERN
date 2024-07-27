@@ -117,16 +117,31 @@ router.post("/signup", async (req, res) => {
     //     return res.status(400).json({ message: "Password must be at least 5 characters long" });
     // }
 
+    if (!username) {
+      return res.status(200).json({ message: "nouser" });
+
+    }
+
+    if (!password) {
+      return res.status(200).json({ message: "nopass" });
+
+    }
+
+    if (!email) {
+      return res.status(200).json({ message: "noemail" });
+
+    }
+
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     const userExists = await User.findOne({ username: username });
     if (userExists) {
-      return res.status(400).json({ message: "Username already exists" });
+      return res.status(200).json({ message: "caseuser" });
     }
 
     const emailExists = await User.findOne({ email: email });
     if (emailExists) {
-      return res.status(400).json({ message: "Email already exists" });
+      return res.status(200).json({ message: "caseemail" });
     }
 
     const newUser = new User({
@@ -137,7 +152,7 @@ router.post("/signup", async (req, res) => {
     });
 
     await newUser.save();
-    return res.status(200).json({ message: "User saved successfully" });
+    return res.status(200).json({ message: "userok" });
   } catch (error) {
     res.status(500).json({ message: "INTERNAL ERROR" });
     console.error(error);
