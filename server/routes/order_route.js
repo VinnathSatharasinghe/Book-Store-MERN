@@ -8,12 +8,12 @@ router.post("/orders", async (req, res) => {
     const { user, book, status} = req.body;
 
     if (!user) {
-      return res.status(200).json({ message: "notitle" });
+      return res.status(200).json({ message: "nouser" });
 
     }
 
     if (!book) {
-      return res.status(200).json({ message: "noauth" });
+      return res.status(200).json({ message: "nobook" });
 
     }
 
@@ -29,7 +29,7 @@ router.post("/orders", async (req, res) => {
 
     });
 
-    await newBook.save();
+    await newOrder.save();
     return res.status(200).json({ message: "bookok" });
   } catch (error) {
     res.status(500).json({ message: "INTERNAL ERROR" });

@@ -6,19 +6,15 @@ require("./conn/conn")
 
 const User = require("./routes/user_route");
 const Book = require("./routes/book_route");
+const Order = require("./routes/order_route");
 
 const cors = require('cors');
 app.use(cors());
 
-// const order = require("./models/order");
-// const book = require("./models/book");
-
-// const User = require("./models/user");
-// const Order = require("./models/order");
-// const Book = require("./models/book");
 
 app.use("/api", User);
 app.use("/api", Book);
+app.use("/api", Order);
 
 
 app.get("/", (req, res) => {
