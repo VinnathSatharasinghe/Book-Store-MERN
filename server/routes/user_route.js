@@ -184,19 +184,43 @@ router.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_PRIVATE_KEY, {
-      expiresIn: "1h",
+      expiresIn: "10 minutes",
     });
 
     const decodedToken = jwt.decode(token);
     const expiresAt = new Date(decodedToken.exp * 1000); // Convert to milliseconds
+    const currentTime = new Date();
+
+    // Calculate the difference in milliseconds
+  const timeLeft = expiresAt - currentTime;
+
+  // Convert the difference to a more readable format (e.g., seconds, minutes, hours)
+  const secondsLeft = Math.floor(timeLeft / 1000);
+  const minutesLeft = Math.floor(secondsLeft / 60);
+  const hoursLeft = Math.floor(minutesLeft / 60);
+
+  const calculateTimeLeft = (expiresAt, currentTime) => {
+    const timeLeft = expiresAt - currentTime;
+    
+    const secondsLeft = Math.floor(timeLeft / 1000);
+    const minutesLeft = Math.floor(secondsLeft / 60);
+    const hoursLeft = Math.floor(minutesLeft / 60);
+  
+    return `Time left: ${hoursLeft} hours, ${minutesLeft % 60} minutes, ${secondsLeft % 60} seconds`;
+  };
+
+
+  const timeLeftMessage = calculateTimeLeft(expiresAt, currentTime);
+
 
     return res.status(200).json({
       message: "loginok",
       token,
-      expiresAt,
       username,
       id: user._id,
-      role: user.role
+      role: user.role,
+      expiresAt,
+      timeLeftMessage,
   
     });
   } catch (error) {
@@ -209,6 +233,33 @@ router.post("/login", async (req, res) => {
 // Protected route example
 router.get("/protected", verifyToken, (req, res) => {
   res.status(200).json({ message: "This is a protected route", user: req.user });
+});
+
+// router.get("/user-info", verifyToken, async (req, res) => {
+//   try {
+//     const {id} = req.params.id;
+//     const data = await User.findById(id);
+//     return res.status(200).json(data);
+
+//   }catch (err) {
+//     return res.status(200).json({ message:"Internal error" });
+//   }
+// })
+
+
+router.get('/user-info/:id', verifyToken, async (req, res) => {
+  try {
+    const { id } = req.params; // Extract the user ID from the request parameters
+    const data = await User.findById(id);
+
+    if (!data) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json(data);
+  } catch (err) {
+    return res.status(500).json({ message: "Internal error" });
+  }
 });
 
 module.exports = router;
