@@ -5,45 +5,36 @@ const Book = require("../models/book");
 // add book
 router.post("/books", async (req, res) => {
   try {
-    const { title, author, price, desc, language } = req.body;
+    const { url, title, author, price, desc, language } = req.body;
 
     if (!title) {
       return res.status(200).json({ message: "notitle" });
-
     }
 
     if (!author) {
-      return res.status(200).json({ message: "noauth" });
-
+      return res.status(200).json({ message: "noauther" });
     }
 
     if (!price) {
       return res.status(200).json({ message: "noprice" });
-
     }
 
-    if (!desc) {
-        return res.status(200).json({ message: "nodes" });
-  
-      }
-
-      if (!language ) {
-        return res.status(200).json({ message: "nolang" });
-  
-      }
-
- 
+    if (!language) {
+      return res.status(200).json({ message: "nolang" });
+    }
 
     const bookExists = await Book.findOne({ title: title });
     if (bookExists) {
       return res.status(200).json({ message: "oldbook" });
     }
 
-
     const newBook = new Book({
+      url: url,
       title: title,
       author: author,
-
+      price: price,
+      desc: desc,
+      language: language,
     });
 
     await newBook.save();
@@ -53,6 +44,5 @@ router.post("/books", async (req, res) => {
     console.error(error);
   }
 });
-
 
 module.exports = router;

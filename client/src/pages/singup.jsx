@@ -4,8 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "../css/log.css";
-
+import "../css/log.css"; //use same css used for login page
+ 
 import "react-toastify/dist/ReactToastify.css";
 
 function Singup() {
@@ -19,7 +19,7 @@ function Singup() {
 
     setTimeout(() => {
       window.location.href = "/";
-    }, 1000); // 2000ms = 2 seconds delay
+    }, 1000); 
   };
 
 
