@@ -5,6 +5,7 @@ require('dotenv').config();
 require("./conn/conn")
 
 const User = require("./routes/user_route");
+const Admin = require("./routes/admin_route");
 const Book = require("./routes/book_route");
 const Order = require("./routes/order_route");
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 
 app.use("/api", User);
+app.use("/api", Admin);
 app.use("/api", Book);
 app.use("/api", Order);
 

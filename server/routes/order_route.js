@@ -18,7 +18,7 @@ router.post("/orders", async (req, res) => {
     }
 
     if (!status) {
-      return res.status(200).json({ message: "noprice" });
+      return res.status(200).json({ message: "nostatus" });
 
     }
 

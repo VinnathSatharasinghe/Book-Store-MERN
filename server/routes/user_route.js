@@ -191,14 +191,6 @@ router.post("/login", async (req, res) => {
     const expiresAt = new Date(decodedToken.exp * 1000); // Convert to milliseconds
     const currentTime = new Date();
 
-    // Calculate the difference in milliseconds
-  const timeLeft = expiresAt - currentTime;
-
-  // Convert the difference to a more readable format (e.g., seconds, minutes, hours)
-  const secondsLeft = Math.floor(timeLeft / 1000);
-  const minutesLeft = Math.floor(secondsLeft / 60);
-  const hoursLeft = Math.floor(minutesLeft / 60);
-
   const calculateTimeLeft = (expiresAt, currentTime) => {
     const timeLeft = expiresAt - currentTime;
     
@@ -235,16 +227,6 @@ router.get("/protected", verifyToken, (req, res) => {
   res.status(200).json({ message: "This is a protected route", user: req.user });
 });
 
-// router.get("/user-info", verifyToken, async (req, res) => {
-//   try {
-//     const {id} = req.params.id;
-//     const data = await User.findById(id);
-//     return res.status(200).json(data);
-
-//   }catch (err) {
-//     return res.status(200).json({ message:"Internal error" });
-//   }
-// })
 
 
 router.get('/user-info/:id', verifyToken, async (req, res) => {
