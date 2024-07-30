@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../css/log.css"; //use same css used for login page
-
 import "react-toastify/dist/ReactToastify.css";
+
+import UserNavBar from "../User_afterlogin/user_navbar";
 
 function Updateuser() {
   const location = useLocation();
@@ -64,6 +65,7 @@ function Updateuser() {
 
   return (
     <div>
+    <UserNavBar/>
       <div className="mainx">
         <div className="formx">
           <Form onSubmit={handleSubmit}>

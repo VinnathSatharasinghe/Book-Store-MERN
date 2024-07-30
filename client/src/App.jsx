@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/Home";
 import NavBar from "./navbar/Navogation";
+import UserNavBar from "./User_afterlogin/user_navbar";
 import Login from './pages/Login';
 import Signup from './pages/Singup';
 import Book from './pages/Add_book';
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
   {
     path: "/nav",
     element: <NavBar />,
+
+  },
+  {
+    path: "/usernav",
+    element: <UserNavBar />,
 
   },
   {
