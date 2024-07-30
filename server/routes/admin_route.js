@@ -24,11 +24,6 @@ router.post("/admin-signup", async (req, res) => {
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
-    const isMatch = bcrypt.compareSync(password, admin.password);
-    if (!isMatch) {
-      return res.status(200).json({ message: "casepass" });
-    }
-
     const adminExists = await Admin.findOne({ username: username });
     
     if (adminExists) {
@@ -111,14 +106,9 @@ router.post("/admin-login", async (req, res) => {
   }
 });
 
-// Protected route example
-router.get("/protected", verifyToken, (req, res) => {
-  res.status(200).json({ message: "This is a protected route", user: req.user });
-});
 
 
-
-router.get('/user-info/:id', verifyToken, async (req, res) => {
+router.get('/admin-info/:id', verifyToken, async (req, res) => {
   try {
     const { id } = req.params; // Extract the user ID from the request parameters
     const data = await User.findById(id);

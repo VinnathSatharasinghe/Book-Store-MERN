@@ -4,43 +4,49 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "../css/log.css"; 
-
+import "../css/log.css"; //use same css used for login page
+ 
 import "react-toastify/dist/ReactToastify.css";
 
-function Admin_login() {
+function Singup() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    toast.success("Let's go to home page");
+
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1000); 
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/api/admin-login", { username, password })
+      .post("http://localhost:5000/api/admin-signup", { username, password })
       .then((result) => {
         console.log(result);
 
         if (result.data.message == "noadmin") {
-          toast.error("Login Failed. No user.");
-
-        } else if (result.data.message == "caseadmin") {
-          toast.error("Login Failed. No user existed.");
+          toast.error("Singup Failed. No User Included.");
 
         } else if (result.data.message == "nopass") {
-          toast.error("Login Failed. No Password");
-          
-        } else if (result.data.message == "casepass") {
-          toast.error("Login Failed. Incorrect Password");
+            toast.error("Singup Failed. No Password Included.");
+  
+          } else if (result.data.message == "caseadmin") {
+          toast.error("Singup Failed. User Already existed.");
 
-        } else if (result.data.message == "adminloginok") {
-          toast.success("Admin Login Successful!");
+        }  else if (result.data.message == "adminok") {
+          toast.success("Admin Singup Successful!");
           setTimeout(() => {
             navigate("/");
           },1000);
        
         } else {
-          toast.error("Admin Login Failed. No record existed.");
+          toast.error("Singup Failed. No record existed.");
         }
       })
       .catch((err) => console.log(err));
@@ -51,13 +57,13 @@ function Admin_login() {
       <div className="mainx">
         <div className="formx">
           <Form onSubmit={handleSubmit}>
-          <h2 style={{marginTop:'50px'}}>Admin Login</h2>
+          <h2 style={{marginTop:'50px'}}>Admin Signup</h2>
             <Form.Group className="mb-3" controlId="formBasicUsername">
               <Form.Label>Username</Form.Label>
               <br />
               <input
                 type="text"
-                name="admin-username"
+                name="admin-name"
                 placeholder="Enter Username"
                 autoComplete="off"
                 defaultValue={""}
@@ -79,7 +85,7 @@ function Admin_login() {
             </Form.Group>
 
             <Button variant="primary" type="submit">
-              Login
+              Singup
             </Button>
 
             <ToastContainer
@@ -96,8 +102,8 @@ function Admin_login() {
             />
           </Form>
 
-          <Button variant="primary" type="login">
-            <a href="/">Home</a>
+          <Button onClick={handleNavigation} variant="primary" type="login" >Home
+            {/* <a href="/">Home</a> */}
           </Button>
         </div>
       </div>
@@ -105,4 +111,4 @@ function Admin_login() {
   );
 }
 
-export default Admin_login;
+export default Singup;

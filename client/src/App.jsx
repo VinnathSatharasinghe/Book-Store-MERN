@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Signup from './pages/Singup';
 import Book from './pages/Add_book';
 import ALogin from './pages/admin_login';
+import ASignup from './pages/Admin_signup';
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+
+  },
+  {
+    path: "/asignup",
+    element: <ASignup />,
 
   },
   {
