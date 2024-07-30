@@ -6,6 +6,7 @@ import NavBar from "./navbar/Navogation";
 import Login from './pages/Login';
 import Signup from './pages/Singup';
 import Book from './pages/Add_book';
+import ALogin from './pages/admin_login';
 
 
 const router = createBrowserRouter([
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+
+  },
+  {
+    path: "/alogin",
+    element: <ALogin />,
 
   },
   {

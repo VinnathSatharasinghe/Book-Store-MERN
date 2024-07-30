@@ -20,9 +20,14 @@ router.post("/admin-signup", async (req, res) => {
     if (!password) {
       return res.status(200).json({ message: "nopass" });
 
-    }
+    } 
 
     const hashedPassword = bcrypt.hashSync(password, 10);
+
+    const isMatch = bcrypt.compareSync(password, admin.password);
+    if (!isMatch) {
+      return res.status(200).json({ message: "casepass" });
+    }
 
     const adminExists = await Admin.findOne({ username: username });
     
@@ -43,28 +48,28 @@ router.post("/admin-signup", async (req, res) => {
   }
 });
 
-// Login
+// Admin-Login
 router.post("/admin-login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
     if (!username) {
-      return res.status(200).json({ message: "nousername" });
+      return res.status(200).json({ message: "noadmin" });
 
     }
     if (!password) {
-      return res.status(200).json({ message: "nopassword" });
+      return res.status(200).json({ message: "nopass" });
     }
 
     const admin = await Admin.findOne({ username: username });
 
     if (!admin) {
-      return res.status(200).json({ message: "caseusername" });
+      return res.status(200).json({ message: "caseadmin" });
     }
 
     const isMatch = bcrypt.compareSync(password, admin.password);
     if (!isMatch) {
-      return res.status(200).json({ message: "casepassword" });
+      return res.status(200).json({ message: "casepass" });
     }
 
     const token = jwt.sign({ id: admin._id, username: admin.username }, process.env.JWT_PRIVATE_KEY, {
@@ -90,7 +95,7 @@ router.post("/admin-login", async (req, res) => {
 
 
     return res.status(200).json({
-      message: "loginok",
+      message: "adminloginok",
       token,
       username,
       id: admin._id,
