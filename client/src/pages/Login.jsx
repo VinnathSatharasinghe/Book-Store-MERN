@@ -30,9 +30,16 @@ function Login() {
         } else if (result.data.message === "casepassword") {
           toast.error("Login Failed. Incorrect Password");
         } else if (result.data.message === "loginok") {
-          toast.success("Login successful!", { autoClose: 5000 });
+          toast.success("Login successful!");
           setTimeout(() => {
-            navigate("/");
+            navigate("/uupdate", {
+              state:{
+                id: result.data.id,
+                name: result.data.username,
+                _email: result.data.email,
+                _address: result.data.address,
+              }
+            });
           },1000);
        
         } else {

@@ -113,6 +113,9 @@ router.post("/login", async (req, res) => {
       message: "loginok",
       token,
       username,
+      name: user.username,
+      address: user.address,
+      email: user.email,
       id: user._id,
       role: user.role,
       expiresAt,
@@ -143,6 +146,19 @@ router.get('/user-info/:id', verifyToken, async (req, res) => {
     }
 
     return res.status(200).json(data);
+  } catch (err) {
+    return res.status(500).json({ message: "Internal error" });
+  }
+});
+
+
+router.post('/user-update/:id', verifyToken, async (req, res) => {
+  try {
+    const { id } = req.params; 
+    const { password, email, address } = req.body;
+    const data = await User.findByIdAndUpdate(id, {address: address , password: password , email: email });
+    return res.status(200).json(data);
+ 
   } catch (err) {
     return res.status(500).json({ message: "Internal error" });
   }

@@ -8,6 +8,7 @@ import Signup from './pages/Singup';
 import Book from './pages/Add_book';
 import ALogin from './pages/admin_login';
 import ASignup from './pages/Admin_signup';
+import Uupdate from './pages/update_user';
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
   {
     path: "/asignup",
     element: <ASignup />,
+
+  },
+  {
+    path: "/uupdate",
+    element: <Uupdate />,
 
   },
   {

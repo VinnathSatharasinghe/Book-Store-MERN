@@ -1,11 +1,12 @@
-
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './navscss.css';
+import '../navbar/navscss.css';
 
-const Navigation = () => {
-  return (
-    <Navbar bg="light" >
+
+const Usernavigation = () => {
+
+    return(
+        <Navbar bg="light" >
       <Navbar.Brand>
         <img
           src="../../public/logos/wadadadawdawdadd-removebg-preview.png"
@@ -26,7 +27,8 @@ const Navigation = () => {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  );
-};
+    )
 
-export default Navigation;
+}
+
+export default Usernavigation;
