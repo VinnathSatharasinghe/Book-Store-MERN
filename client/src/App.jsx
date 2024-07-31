@@ -9,7 +9,8 @@ import Signup from './pages/Singup';
 import Book from './pages/Add_book';
 import ALogin from './pages/admin_login';
 import ASignup from './pages/Admin_signup';
-import Uupdate from './pages/update_user';
+import Uupdate from './User_afterlogin/update_user';
+import Userafterlogin from './User_afterlogin/user-afterlogin';
 
 
 const router = createBrowserRouter([
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
 
   },
   {
-    path: "/usernav",
+    path: "/unav",
     element: <UserNavBar />,
 
   },
@@ -53,6 +54,12 @@ const router = createBrowserRouter([
     element: <Uupdate />,
 
   },
+  {
+    path: "/uafterlogin",
+    element: <Userafterlogin/>,
+
+  },
+
   {
     path: "/addbook",
     element: <Book />,

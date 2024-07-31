@@ -155,9 +155,46 @@ router.get('/user-info/:id', verifyToken, async (req, res) => {
 router.post('/user-update/:id', verifyToken, async (req, res) => {
   try {
     const { id } = req.params; 
-    const { password, email, address } = req.body;
-    const data = await User.findByIdAndUpdate(id, {address: address , password: password , email: email });
-    return res.status(200).json(data);
+    const { username,password, email, address } = req.body;
+    const data = await User.findByIdAndUpdate(id, {username:username, address: address , password: password , email: email });
+    // return res.status(200).json(data);
+
+
+
+    if (!username) {
+      return res.status(200).json({ message: "nouser" });
+
+    }
+    if (!password) {
+      return res.status(200).json({ message: "nopass" });
+    }
+
+    const user = await User.findOne({ username: username });
+
+    if (!user) {
+      return res.status(200).json({ message: "caseuser" });
+    }
+
+    const isMatch = bcrypt.compareSync(password, user.password);
+    if (!isMatch) {
+      return res.status(200).json({ message: "casepass" });
+    }
+
+    return res.status(200).json({
+      message: "loginok",
+      // token,
+      // username,
+      // name: user.username,
+      // address: user.address,
+      // email: user.email,
+      // id: user._id,
+      // role: user.role,
+      // expiresAt,
+      // timeLeftMessage,
+  
+    });
+
+
  
   } catch (err) {
     return res.status(500).json({ message: "Internal error" });

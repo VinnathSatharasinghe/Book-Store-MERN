@@ -7,8 +7,7 @@ import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../css/log.css"; //use same css used for login page
 import "react-toastify/dist/ReactToastify.css";
-
-import UserNavBar from "../User_afterlogin/user_navbar";
+import UserNavBar from "./user_navbar";
 
 function Updateuser() {
   const location = useLocation();
@@ -17,10 +16,9 @@ function Updateuser() {
   const { _email } = location.state;
   const { _address } = location.state;
 
-  const [username, setUsername] = useState();
-//   const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
-  const [address, setAddress] = useState();
+  const [username, setUsername] = useState(name);
+  const [email, setEmail] = useState(_email);
+  const [address, setAddress] = useState(_address);
   const navigate = useNavigate();
 
   const handleNavigation = () => {
@@ -31,7 +29,7 @@ function Updateuser() {
     }, 1000);
   };
 
-  const handleSubmit = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
 
     axios
@@ -44,20 +42,18 @@ function Updateuser() {
         console.log(result);
 
         if (result.data.message === "nouser") {
-          toast.error("Singup Failed. No User Included.", { autoClose: 5000 });
+          toast.error("Update Failed. No User Included.");
         } else if (result.data.message === "nopass") {
-          toast.error("Singup Failed. No Password Included.", {
-            autoClose: 5000,
-          });
+          toast.error("Update Failed. No Password Included.");
         } else if (result.data.message === "caseuser") {
-          toast.error("Singup Failed. User Already existed.");
+          toast.error("Update Failed. User Already existed.");
         } else if (result.data.message === "userok") {
-          toast.success("Singup Successful!", { autoClose: 5000 });
+          toast.success("Update Successful!");
           setTimeout(() => {
             navigate("/");
           }, 1000);
         } else {
-          toast.error("Singup Failed. No record existed.");
+          toast.error("Update Failed. No record existed.");
         }
       })
       .catch((err) => console.log(err));
@@ -68,7 +64,7 @@ function Updateuser() {
     <UserNavBar/>
       <div className="mainx">
         <div className="formx">
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleUpdate}>
             <h4>User Update {name}</h4>
 
             <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -103,7 +99,7 @@ function Updateuser() {
               <Form.Label>Email</Form.Label>
               <br />
               <input
-                type="email"
+                type="text"
                 name="email"
                 placeholder="Enter Email"
                 autoComplete="off"

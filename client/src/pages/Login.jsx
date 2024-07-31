@@ -32,7 +32,7 @@ function Login() {
         } else if (result.data.message === "loginok") {
           toast.success("Login successful!");
           setTimeout(() => {
-            navigate("/uupdate", {
+            navigate("/uafterlogin", {
               state:{
                 id: result.data.id,
                 name: result.data.username,
