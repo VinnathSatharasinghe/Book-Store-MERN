@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "../css/log.css"; 
+import "../css/log.css";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,25 +23,33 @@ function Login() {
 
         if (result.data.message === "nousername") {
           toast.error("Login Failed. No user.", { autoClose: 5000 });
+
         } else if (result.data.message === "caseusername") {
           toast.error("Login Failed. No user existed.");
+
         } else if (result.data.message === "nopassword") {
           toast.error("Login Failed. No Password");
+
         } else if (result.data.message === "casepassword") {
           toast.error("Login Failed. Incorrect Password");
+          
         } else if (result.data.message === "loginok") {
+          const token = result.data.token; // Get the token from the response
+          localStorage.setItem("token", token); // Store the token in localStorage
+          console.log(localStorage.getItem("token"));
           toast.success("Login successful!");
+
           setTimeout(() => {
-            navigate("/uafterlogin", {
-              state:{
+            navigate("/uupdate", {
+              state: {
                 id: result.data.id,
                 name: result.data.username,
                 _email: result.data.email,
                 _address: result.data.address,
-              }
+                // tok: result.data.token,
+              },
             });
-          },1000);
-       
+          }, 1000);
         } else {
           toast.error("Login Failed. No record existed.");
         }

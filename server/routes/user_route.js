@@ -88,7 +88,7 @@ router.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_PRIVATE_KEY, {
-      expiresIn: "10 minutes",
+      expiresIn: "1d",
     });
 
     const decodedToken = jwt.decode(token);
@@ -152,54 +152,64 @@ router.get('/user-info/:id', verifyToken, async (req, res) => {
 });
 
 
-router.post('/user-update/:id', verifyToken, async (req, res) => {
-  try {
-    const { id } = req.params; 
-    const { username,password, email, address } = req.body;
-    const data = await User.findByIdAndUpdate(id, {username:username, address: address , password: password , email: email });
-    // return res.status(200).json(data);
+// router.put('/user-update/:id', verifyToken, async (req, res) => {
+//   try {
+//     const { id } = req.params; 
+//     const { username, password, email, address } = req.body;
+//     const data = await User.findByIdAndUpdate(id, {username:username, address: address , password: password , email: email });
+//     return res.status(200).json(data);
 
 
 
-    if (!username) {
-      return res.status(200).json({ message: "nouser" });
+//     if (!username) {
+//       return res.status(200).json({ message: "nouser" });
 
-    }
-    if (!password) {
-      return res.status(200).json({ message: "nopass" });
-    }
+//     }
+//     const user = await User.findOne({ username: username });
 
-    const user = await User.findOne({ username: username });
+//     if (!user) {
+//       return res.status(200).json({ message: "caseuser" });
+//     }
 
-    if (!user) {
-      return res.status(200).json({ message: "caseuser" });
-    }
+//     const isMatch = bcrypt.compareSync(password, user.password);
+//     if (!isMatch) {
+//       return res.status(200).json({ message: "casepass" });
+//     }
 
-    const isMatch = bcrypt.compareSync(password, user.password);
-    if (!isMatch) {
-      return res.status(200).json({ message: "casepass" });
-    }
+//     return res.status(200).json({
+//       message: "upok",
+//       data,
 
-    return res.status(200).json({
-      message: "loginok",
-      // token,
-      // username,
-      // name: user.username,
-      // address: user.address,
-      // email: user.email,
-      // id: user._id,
-      // role: user.role,
-      // expiresAt,
-      // timeLeftMessage,
   
-    });
+//     });
 
 
  
+//   } catch (err) {
+//     return res.status(500).json({ message: "server side Internal error" });
+//   }
+// });
+
+
+router.post('/user-update/:id', verifyToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { username, email, address } = req.body;
+    
+    // Update the user details
+    const data = await User.findByIdAndUpdate(id, { username, email, address }, { new: true });
+    
+    if (!data) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: "userok", data });
   } catch (err) {
-    return res.status(500).json({ message: "Internal error" });
+    console.error(err); // Log the error to see it in the backend logs
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 });
+
 
 module.exports = router;
 
