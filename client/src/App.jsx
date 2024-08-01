@@ -3,14 +3,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/Home";
 import NavBar from "./navbar/Navogation";
-import UserNavBar from "./User_afterlogin/user_navbar";
+import UserNavBar from "./pages/User_afterlogin/user_navbar";
 import Login from './pages/Login';
 import Signup from './pages/Singup';
-import Book from './pages/Add_book';
+import Book from './pages/Admin_afterlogin/Add_book';
 import ALogin from './pages/admin_login';
 import ASignup from './pages/Admin_signup';
-import Uupdate from './User_afterlogin/update_user';
-import Userafterlogin from './User_afterlogin/user-afterlogin';
+import Uupdate from './pages/User_afterlogin/update_user';
+import Userafterlogin from './pages/User_afterlogin/user-afterlogin';
 
 
 const router = createBrowserRouter([
