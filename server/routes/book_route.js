@@ -45,4 +45,20 @@ router.post("/books", async (req, res) => {
   }
 });
 
+
+// Fetch all books
+router.get("/vbook", async (req, res) => {
+  console.log("GET /vbook route hit");
+  try {
+    const books = await Book.find({});
+    console.log("Bookss fetched: ", books);
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(500).json({ message: "INTERNAL ERROR" });
+    console.error(error);
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
+
 module.exports = router;

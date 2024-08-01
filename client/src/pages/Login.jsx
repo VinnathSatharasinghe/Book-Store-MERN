@@ -46,7 +46,7 @@ function Login() {
                 name: result.data.username,
                 _email: result.data.email,
                 _address: result.data.address,
-                // tok: result.data.token,
+                
               },
             });
           }, 1000);

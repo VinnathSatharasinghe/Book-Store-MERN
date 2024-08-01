@@ -191,6 +191,23 @@ router.get('/user-info/:id', verifyToken, async (req, res) => {
 // });
 
 
+
+// Get all users
+
+router.get('/users', verifyToken, async (req, res) => {
+  console.log("GET /users route hit"); // Log to check if route is hit
+  try {
+    const users = await User.find({});
+    console.log("Users fetched: ", users); // Log fetched users
+    res.status(200).json(users);
+  } catch (err) {
+    console.error("Error fetching users:", err); // Log the error
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
+
+
 router.post('/user-update/:id', verifyToken, async (req, res) => {
   try {
     const { id } = req.params;

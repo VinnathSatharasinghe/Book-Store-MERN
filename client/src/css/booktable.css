@@ -1,0 +1,15 @@
+/* In your App.css or a separate CSS file */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #0000;
+  }
+  
