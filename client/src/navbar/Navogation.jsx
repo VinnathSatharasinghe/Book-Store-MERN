@@ -23,6 +23,7 @@ const Navigation = () => {
           <Nav.Link as={Link} to="/asignup">A-Signup</Nav.Link>
           <Nav.Link as={Link} to="/alogin">A-Login</Nav.Link>
           <Nav.Link as={Link} to="/auser">users</Nav.Link>
+          <Nav.Link as={Link} to="/vbooks">Books</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

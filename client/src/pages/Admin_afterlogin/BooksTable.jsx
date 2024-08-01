@@ -9,7 +9,7 @@ const BooksTable = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/vbooks');
+        const response = await axios.get('http://localhost:5000/api/vbook');
         setBooks(response.data);
       } catch (error) {
         console.error("There was an error fetching the books!", error);

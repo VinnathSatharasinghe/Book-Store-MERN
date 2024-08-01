@@ -67,7 +67,7 @@ const router = createBrowserRouter([
 
   },
   {
-    path: "/vbook",
+    path: "/vbooks",
     element: <Vbook />,
 
   },
