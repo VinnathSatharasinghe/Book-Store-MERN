@@ -152,45 +152,6 @@ router.get('/user-info/:id', verifyToken, async (req, res) => {
 });
 
 
-// router.put('/user-update/:id', verifyToken, async (req, res) => {
-//   try {
-//     const { id } = req.params; 
-//     const { username, password, email, address } = req.body;
-//     const data = await User.findByIdAndUpdate(id, {username:username, address: address , password: password , email: email });
-//     return res.status(200).json(data);
-
-
-
-//     if (!username) {
-//       return res.status(200).json({ message: "nouser" });
-
-//     }
-//     const user = await User.findOne({ username: username });
-
-//     if (!user) {
-//       return res.status(200).json({ message: "caseuser" });
-//     }
-
-//     const isMatch = bcrypt.compareSync(password, user.password);
-//     if (!isMatch) {
-//       return res.status(200).json({ message: "casepass" });
-//     }
-
-//     return res.status(200).json({
-//       message: "upok",
-//       data,
-
-  
-//     });
-
-
- 
-//   } catch (err) {
-//     return res.status(500).json({ message: "server side Internal error" });
-//   }
-// });
-
-
 
 // Get all users
 

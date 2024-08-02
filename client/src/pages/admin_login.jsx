@@ -36,7 +36,12 @@ function Admin_login() {
         } else if (result.data.message == "adminloginok") {
           toast.success("Admin Login Successful!");
           setTimeout(() => {
-            navigate("/");
+            navigate("/aafterlogin", {
+              state: {
+                 id: result.data.id,
+                 name: result.data.name,
+              },
+            });
           },1000);
        
         } else {

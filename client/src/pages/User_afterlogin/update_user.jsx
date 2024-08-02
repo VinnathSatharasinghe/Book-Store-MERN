@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "../../css/log.css"; 
 import "react-toastify/dist/ReactToastify.css";
 
-import UserNavBar from "./user_navbar";
+import UserNavBar from "./User_navbar";
 
 function Updateuser() {
   const location = useLocation();

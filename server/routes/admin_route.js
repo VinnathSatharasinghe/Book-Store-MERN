@@ -85,14 +85,12 @@ router.post("/admin-login", async (req, res) => {
     return `Time left: ${hoursLeft} hours, ${minutesLeft % 60} minutes, ${secondsLeft % 60} seconds`;
   };
 
-
   const timeLeftMessage = calculateTimeLeft(expiresAt, currentTime);
-
 
     return res.status(200).json({
       message: "adminloginok",
       token,
-      username,
+      name: admin.username,
       id: admin._id,
       role: admin.role,
       expiresAt,

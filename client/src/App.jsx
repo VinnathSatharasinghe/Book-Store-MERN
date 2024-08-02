@@ -3,16 +3,18 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/Home";
 import NavBar from "./navbar/Navogation";
-import UserNavBar from "./pages/User_afterlogin/user_navbar";
+import UserNavBar from "./pages/User_afterlogin/User_navbar";
 import Login from './pages/Login';
 import Signup from './pages/Singup';
 import Book from './pages/Admin_afterlogin/Add_book';
-import ALogin from './pages/admin_login';
+import ALogin from './pages/Admin_login';
 import ASignup from './pages/Admin_signup';
-import Uupdate from './pages/User_afterlogin/update_user';
-import Userafterlogin from './pages/User_afterlogin/user-afterlogin';
+import Uupdate from './pages/User_afterlogin/Update_user';
+import Userafterlogin from './pages/User_afterlogin/User-afterlogin';
 import Vbook from './pages/Admin_afterlogin/BooksTable'
 import Alluser from './pages/Admin_afterlogin/All_users'
+import Bookupdate from './pages/Admin_afterlogin/Bookupdate';
+import Adminafterlogin from './pages/Admin_afterlogin/Admin-afterlog';
 
 const router = createBrowserRouter([
 
@@ -62,6 +64,12 @@ const router = createBrowserRouter([
   },
 
   {
+    path: "/aafterlogin",
+    element: <Adminafterlogin/>,
+
+  },
+
+  {
     path: "/addbook",
     element: <Book />,
 
@@ -69,6 +77,11 @@ const router = createBrowserRouter([
   {
     path: "/vbooks",
     element: <Vbook />,
+
+  },
+  {
+    path: "/bupdate",
+    element: <Bookupdate />,
 
   },
   {
