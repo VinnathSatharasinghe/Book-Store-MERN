@@ -59,7 +59,7 @@ router.get("/vbook", async (req, res) => {
   }
 });
 
-router.get("/book/view/:id", async (req, res) => {
+router.get("/books/view/:id", async (req, res) => {
   
   try {
     const bookId = req.params.id;
@@ -116,7 +116,6 @@ router.put("/books/update/:id", async (req, res) => {
     const updatedBook = await Book.findByIdAndUpdate(
       id,
       {
-        url,
         title,
         author,
         price,
@@ -130,12 +129,12 @@ router.put("/books/update/:id", async (req, res) => {
       return res.status(404).json({ message: "bookNotFound" });
     }
 
-    res.status(200).json({ message: "bookUpdated", book: updatedBook });
+    res.status(200).json({ message: "bookUpdated", updatedBook });
   } catch (error) {
     res.status(500).json({ message: "INTERNAL ERROR" });
 
     console.error(error);
-    res.status(500).json({ message: "Server error", error: err.message });
+    res.status(500).json({ message: "Server error" });
   }
 });
 

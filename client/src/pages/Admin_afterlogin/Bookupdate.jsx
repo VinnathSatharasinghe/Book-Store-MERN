@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "../../css/log.css"; //use same css used for login page
 import "react-toastify/dist/ReactToastify.css";
@@ -12,24 +12,24 @@ function Bookupdate() {
   const [author, setAuthor] = useState();
   const [price, setPrice] = useState();
   const [language, setLanguage] = useState();
-  const [url, setUrl] = useState();
+  // const [url, setUrl] = useState();
   const [desc, setDesc] = useState();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const location = useLocation();
   const { id } = location.state || {};
 
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:5000/api/book/view/${id}`)
+      axios.get(`http://localhost:5000/api/books/view/${id}`)
         .then((response) => {
           const book = response.data;
           setTitle(book.title);
           setAuthor(book.author);
           setPrice(book.price);
           setLanguage(book.language);
-          setUrl(book.url);
+          // setUrl(book.url);
           setDesc(book.desc);
         })
         .catch((error) => {
@@ -39,12 +39,11 @@ function Bookupdate() {
   }, [id]);
 
 
-  const handleSubmit = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/api/books/update/${id}", {
-        url,
+      .put(`http://localhost:5000/api/books/update/${id}`, {
         desc,
         title,
         author,
@@ -56,9 +55,12 @@ function Bookupdate() {
 
          if (result.data.message === "bookUpdated") {
           toast.success("Book Successfuly Updated", { autoClose: 5000 });
-          setTimeout(() => {
-            navigate("");
-          }, 1000);
+          // setTimeout(() => {
+          //   navigate("");
+          // }, 1000);
+        } else if (result.data.message === "bookNotFound") {
+          toast.success("Book not found Updated", { autoClose: 5000 });
+
         } else {
           toast.error("Uplord Failed.");
         }
@@ -70,11 +72,9 @@ function Bookupdate() {
 
   return (
     <div>
-         <h1>Welcome, {title}</h1>
-         <p>id: {id}</p>
       <div className="mainx">
         <div className="formx">
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleUpdate}>
             <h4>Update Book</h4>
             <Form.Group className="mb-3" controlId="formBasicTitle">
               <Form.Label>Title</Form.Label>
@@ -97,7 +97,7 @@ function Bookupdate() {
                 name="author"
                 placeholder="Enter Author"
                 autoComplete="off"
-                defaultValue={price}
+                defaultValue={author}
                 onChange={(e) => setAuthor(e.target.value)}
               />
             </Form.Group>
@@ -110,7 +110,7 @@ function Bookupdate() {
                 name="price"
                 placeholder="Enter Price"
                 autoComplete="off"
-                defaultValue={""}
+                defaultValue={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Form.Group>
@@ -123,21 +123,8 @@ function Bookupdate() {
                 name="lang"
                 placeholder="Enter Language"
                 autoComplete="off"
-                defaultValue={id}
+                defaultValue={language}
                 onChange={(e) => setLanguage(e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicUrl">
-            <Form.Label>Url</Form.Label>
-              <br />
-              <input
-                type="text"
-                name="url"
-                placeholder="Enter Url"
-                autoComplete="off"
-                defaultValue={""}
-                onChange={(e) => setUrl(e.target.value)}
               />
             </Form.Group>
 
@@ -150,13 +137,13 @@ function Bookupdate() {
                 name="description"
                 placeholder="Enter Description"
                 autoComplete="off"
-                defaultValue={""}
+                defaultValue={desc}
                 onChange={(e) => setDesc(e.target.value)}
               />
             </Form.Group>
 
             <Button variant="primary" type="submit">
-              Singup
+              Update
             </Button>
 
             <ToastContainer

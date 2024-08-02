@@ -15,7 +15,7 @@ import Vbook from './pages/Admin_afterlogin/BooksTable'
 import Alluser from './pages/Admin_afterlogin/All_users'
 import Bookupdate from './pages/Admin_afterlogin/Bookupdate';
 import Adminafterlogin from './pages/Admin_afterlogin/Admin-afterlog';
-
+import Allbooks from './pages/Books';
 const router = createBrowserRouter([
 
   {
@@ -68,7 +68,11 @@ const router = createBrowserRouter([
     element: <Adminafterlogin/>,
 
   },
+  {
+    path: "/auser",
+    element: <Alluser />,
 
+  },
   {
     path: "/addbook",
     element: <Book />,
@@ -85,10 +89,11 @@ const router = createBrowserRouter([
 
   },
   {
-    path: "/auser",
-    element: <Alluser />,
+    path: "/allbooks",
+    element: <Allbooks />,
 
   },
+
 
 ]);
 
