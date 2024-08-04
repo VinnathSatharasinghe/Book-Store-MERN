@@ -1,10 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../css/log.css";
+
+import { UserContext } from "../App";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,6 +14,7 @@ function Login() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,10 +37,27 @@ function Login() {
           toast.error("Login Failed. Incorrect Password");
           
         } else if (result.data.message === "loginok") {
+
           const token = result.data.token; // Get the token from the response
-          localStorage.setItem("token", token); // Store the token in localStorage
-          console.log(localStorage.getItem("token"));
+          const expiresAt = result.data.expiresAt; // Get the expiration time in seconds from the response
+        
+          // Store the token and expiration time in localStorage
+          localStorage.setItem("token", token);
+          localStorage.setItem("tokenExpiration", expiresAt);
+        
+          console.log("Token:", localStorage.getItem("token"));
+          console.log("Token Expiration Time:", localStorage.getItem("tokenExpiration"));
+
+
           toast.success("Login successful!");
+
+          setUser({ 
+            loggedIn: true,
+            id: result.data.id,
+            name: result.data.username,
+            _email: result.data.email,
+            _address: result.data.address,
+          });
 
           setTimeout(() => {
             navigate("/uafterlogin", {

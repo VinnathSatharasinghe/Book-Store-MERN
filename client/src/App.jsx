@@ -1,5 +1,7 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState, createContext } from 'react';
+import ProtectedRoutes from './components/routes/ProtectedRoutes';
 
 import Home from "./pages/Home";
 import NavBar from "./navbar/Navogation";
@@ -16,6 +18,10 @@ import Alluser from './pages/Admin_afterlogin/All_users'
 import Bookupdate from './pages/Admin_afterlogin/Bookupdate';
 import Adminafterlogin from './pages/Admin_afterlogin/Admin-afterlog';
 import Allbooks from './pages/Books';
+import AllAdmins from './pages/Admin_afterlogin/All_admins'
+
+export const UserContext = createContext();
+
 const router = createBrowserRouter([
 
   {
@@ -59,7 +65,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/uafterlogin",
-    element: <Userafterlogin/>,
+    // element: <Userafterlogin/>,
+    element: (
+      <ProtectedRoutes role="user">
+        <Userafterlogin />
+      </ProtectedRoutes>)
 
   },
 
@@ -69,8 +79,13 @@ const router = createBrowserRouter([
 
   },
   {
-    path: "/auser",
+    path: "/alluser",
     element: <Alluser />,
+
+  },
+  {
+    path: "/alladmins",
+    element: <AllAdmins />,
 
   },
   {
@@ -99,12 +114,23 @@ const router = createBrowserRouter([
 
 
 function App() {
+  const [user, setUser] = useState();
+
   return (
-    <div>
-      <RouterProvider router={router}></RouterProvider>
-    </div>
+    <UserContext.Provider value={{ user, setUser }}>
+      <RouterProvider router={router} />
+    </UserContext.Provider>
   );
 }
 
-export default App
+// function App() {
+//   return (
+//     <div>
+//       <RouterProvider router={router}></RouterProvider>
+//     </div>
+//   );
+// }
+
+export default App;
+
 

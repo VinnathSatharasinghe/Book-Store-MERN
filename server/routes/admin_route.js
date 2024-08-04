@@ -104,7 +104,18 @@ router.post("/admin-login", async (req, res) => {
   }
 });
 
+router.get('/admins', verifyToken, async (req, res) => {
+  console.log("GET /users route hit"); 
 
+  try{
+    const admins = await Admin.find({});
+    console.log("Users fetched: ", admins); // Log fetched users
+    res.status(200).json(admins);
+  }catch (err){
+    res.status(500).json({ message: "Server error" });
+    console.error("Error fetching users:", err); // Log the error
+  }
+});
 
 router.get('/admin-info/:id', verifyToken, async (req, res) => {
   try {

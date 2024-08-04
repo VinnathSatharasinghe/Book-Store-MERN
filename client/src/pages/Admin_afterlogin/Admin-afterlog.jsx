@@ -12,7 +12,7 @@ function Adminafterlog() {
   };
 
   const handleAllUser = () => {
-    navigate("/auser", { state: { id, name } });
+    navigate("/alluser", { state: { id, name } });
   };
 
   const handleBooks = () => {
@@ -26,8 +26,13 @@ function Adminafterlog() {
       <p>id: {id}</p>
       <Button variant="primary" type="login" onClick={handleUpdateAdmin}>Update Admin</Button>
       <br />
-      <Button variant="primary" type="login" onClick={handleAllUser}>Update User Info</Button>
-      <Button variant="primary" type="login" onClick={handleBooks}>Books</Button>
+      <Button variant="primary" type="login" onClick={handleAllUser}>All Users</Button>
+      <Button variant="primary" type="login" onClick={handleBooks}>Books Table</Button>
+      <br />
+      <Button variant="primary" type="login"> <a href="/addbook">Add book</a></Button>
+      <Button variant="primary" type="login">  <a href="/allbooks">All book</a> </Button>
+      <Button variant="primary" type="login">  <a href="/alladmins">All Admins</a> </Button>
+
     </div>
   );
 }
