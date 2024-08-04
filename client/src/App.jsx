@@ -1,7 +1,7 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState, createContext } from 'react';
-import ProtectedRoutes from './components/routes/ProtectedRoutes';
+// import ProtectedRoutes from './components/routes/ProtectedRoutes';
 
 import Home from "./pages/Home";
 import NavBar from "./navbar/Navogation";
@@ -65,11 +65,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/uafterlogin",
-    // element: <Userafterlogin/>,
-    element: (
-      <ProtectedRoutes role="user">
-        <Userafterlogin />
-      </ProtectedRoutes>)
+    element: <Userafterlogin/>,
+
 
   },
 
@@ -132,5 +129,4 @@ function App() {
 // }
 
 export default App;
-
 
