@@ -42,18 +42,22 @@ function Login() {
           const token = result.data.token; // Get the token from the response
           const expiresAt = result.data.expiresAt; // Get the expiration time in seconds from the response
           const expiresAt12HourFormat  = result.data.expiresAt12HourFormat;
+          const liveCountdown  = result.data.liveCountdown;
         
           // Store the token and expiration time in localStorage
           localStorage.setItem("token", token);
           localStorage.setItem("tokenExpiration", expiresAt);
           localStorage.setItem("time", expiresAt12HourFormat);
+          localStorage.setItem("liveCountdown", liveCountdown);
         
           console.log("Token:", localStorage.getItem("token"));
           console.log("Token Expiration Time:", localStorage.getItem("tokenExpiration"));
           console.log("Token Expiration Time 12H:", localStorage.getItem("time"));
+          console.log("liveCountdown", localStorage.getItem("liveCountdown"));
+          
 
           // Use the login function from AuthContext to store the token and expiration time
-          login(token, expiresAt, expiresAt12HourFormat);
+          login(token, expiresAt, liveCountdown);
 
 
           toast.success("Login successful!");

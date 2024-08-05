@@ -111,7 +111,7 @@ router.post("/login", async (req, res) => {
       let hours = date.getHours();
       const minutes = date.getMinutes();
       const seconds = date.getSeconds();
-      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const ampm = hours >= 12 ? "PM" : "AM";
       hours = hours % 12;
       hours = hours ? hours : 12; // the hour '0' should be '12'
       const minutesFormatted = minutes < 10 ? `0${minutes}` : minutes;
@@ -119,8 +119,32 @@ router.post("/login", async (req, res) => {
       return `${hours}:${minutesFormatted}:${secondsFormatted} ${ampm}`;
     };
 
+    const startCountdown = (expiresAt) => {
+      const intervalId = setInterval(() => {
+        const currentTime = Date.now();
+        const timeLeft = expiresAt - currentTime;
+
+        if (timeLeft <= 0) {
+          clearInterval(intervalId);
+          process.stdout.write("\rToken expired\n"); // Move to a new line after expiration
+        } else {
+          const minutesLeft = Math.floor(timeLeft / 1000 / 60);
+          const secondsLeft = Math.floor((timeLeft / 1000) % 60);
+          process.stdout.write(`\rTime left: ${minutesLeft} minutes, ${secondsLeft} seconds`);
+          return `${minutesLeft}:${secondsLeft}`;
+        }
+      }, 1000);
+
+       
+    };
+
+
+
     const timeLeftMessage = calculateTimeLeft(expiresAt, currentTime);
     const expiresAt12HourFormat = convertTo12HourFormat(expiresAt);
+    // const liveCountdown = startCountdown(expiresAt);
+
+    startCountdown(expiresAt)
 
     return res.status(200).json({
       message: "loginok",
@@ -134,6 +158,8 @@ router.post("/login", async (req, res) => {
       expiresAt,
       timeLeftMessage,
       expiresAt12HourFormat,
+      // liveCountdown,
+
     });
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
