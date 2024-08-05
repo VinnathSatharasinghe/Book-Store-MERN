@@ -87,7 +87,7 @@ router.post("/login", async (req, res) => {
       { id: user._id, username: user.username },
       process.env.JWT_PRIVATE_KEY,
       {
-        expiresIn: "20s",
+        expiresIn: "1m",
       }
     );
 
@@ -107,7 +107,20 @@ router.post("/login", async (req, res) => {
       } seconds`;
     };
 
+    const convertTo12HourFormat = (date) => {
+      let hours = date.getHours();
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      const minutesFormatted = minutes < 10 ? `0${minutes}` : minutes;
+      const secondsFormatted = seconds < 10 ? `0${seconds}` : seconds;
+      return `${hours}:${minutesFormatted}:${secondsFormatted} ${ampm}`;
+    };
+
     const timeLeftMessage = calculateTimeLeft(expiresAt, currentTime);
+    const expiresAt12HourFormat = convertTo12HourFormat(expiresAt);
 
     return res.status(200).json({
       message: "loginok",
@@ -120,6 +133,7 @@ router.post("/login", async (req, res) => {
       role: user.role,
       expiresAt,
       timeLeftMessage,
+      expiresAt12HourFormat,
     });
   } catch (error) {
     res.status(500).json({ message: "Server Error" });

@@ -1,23 +1,22 @@
+import React from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "../css/log.css";
-import { useAuth } from "../components/Auth/AuthContext.tsx";
-
+import "../src/css/log.css";
+import { useAuth } from "../src/components/Auth/AuthContext";
 
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
   const { login } = useAuth();
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios
@@ -27,37 +26,27 @@ function Login() {
 
         if (result.data.message === "nousername") {
           toast.error("Login Failed. No user.", { autoClose: 5000 });
-
         } else if (result.data.message === "caseusername") {
           toast.error("Login Failed. No user existed.");
-
         } else if (result.data.message === "nopassword") {
           toast.error("Login Failed. No Password");
-
         } else if (result.data.message === "casepassword") {
           toast.error("Login Failed. Incorrect Password");
-          
         } else if (result.data.message === "loginok") {
-
           const token = result.data.token; // Get the token from the response
           const expiresAt = result.data.expiresAt; // Get the expiration time in seconds from the response
-          const expiresAt12HourFormat  = result.data.expiresAt12HourFormat;
         
           // Store the token and expiration time in localStorage
           localStorage.setItem("token", token);
           localStorage.setItem("tokenExpiration", expiresAt);
-          localStorage.setItem("time", expiresAt12HourFormat);
         
           console.log("Token:", localStorage.getItem("token"));
           console.log("Token Expiration Time:", localStorage.getItem("tokenExpiration"));
-          console.log("Token Expiration Time 12H:", localStorage.getItem("time"));
 
           // Use the login function from AuthContext to store the token and expiration time
-          login(token, expiresAt, expiresAt12HourFormat);
-
+          login(token, expiresAt);
 
           toast.success("Login successful!");
-
 
           setTimeout(() => {
             navigate("/uafterlogin", {
@@ -66,7 +55,6 @@ function Login() {
                 name: result.data.username,
                 _email: result.data.email,
                 _address: result.data.address,
-                
               },
             });
           }, 1000);
@@ -77,6 +65,14 @@ function Login() {
       .catch((err) => console.log(err));
   };
 
+  const handleChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <div>
       <div className="mainx">
@@ -84,28 +80,23 @@ function Login() {
           <Form onSubmit={handleSubmit}>
             <h4>Login Now</h4>
             <Form.Group className="mb-3" controlId="formBasicUsername">
-              {/* <Form.Label>Username</Form.Label> */}
-              <br />
               <input
                 type="text"
                 name="name"
                 placeholder="Enter Username"
                 autoComplete="off"
-                defaultValue={""}
-                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                onChange={handleChangeUsername}
               />
             </Form.Group>
-            <br />
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              {/* <Form.Label>Password</Form.Label> */}
-              <br />
               <input
                 type="password"
                 name="password"
                 placeholder="Enter Password"
                 autoComplete="off"
-                defaultValue={""}
-                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                onChange={handleChangePassword}
               />
             </Form.Group>
 
@@ -127,7 +118,7 @@ function Login() {
             />
           </Form>
 
-          <Button variant="primary" type="login">
+          <Button variant="primary" type="button">
             <a href="/">Home</a>
           </Button>
         </div>
@@ -137,6 +128,3 @@ function Login() {
 }
 
 export default Login;
-
-
-
