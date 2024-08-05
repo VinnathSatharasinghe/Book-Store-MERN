@@ -1,12 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../css/log.css";
+import { useAuth } from "../components/Auth/AuthContext.tsx";
 
-import { UserContext } from "../App";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,7 +14,8 @@ function Login() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
+  const { login } = useAuth();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,16 +49,12 @@ function Login() {
           console.log("Token:", localStorage.getItem("token"));
           console.log("Token Expiration Time:", localStorage.getItem("tokenExpiration"));
 
+          // Use the login function from AuthContext to store the token and expiration time
+          login(token, expiresAt);
+
 
           toast.success("Login successful!");
 
-          setUser({ 
-            loggedIn: true,
-            id: result.data.id,
-            name: result.data.username,
-            _email: result.data.email,
-            _address: result.data.address,
-          });
 
           setTimeout(() => {
             navigate("/uafterlogin", {
