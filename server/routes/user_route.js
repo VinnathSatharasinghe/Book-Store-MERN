@@ -87,7 +87,7 @@ router.post("/login", async (req, res) => {
       { id: user._id, username: user.username },
       process.env.JWT_PRIVATE_KEY,
       {
-        expiresIn: "1m",
+        expiresIn: "10s",
       }
     );
 
@@ -119,32 +119,70 @@ router.post("/login", async (req, res) => {
       return `${hours}:${minutesFormatted}:${secondsFormatted} ${ampm}`;
     };
 
+    // const startCountdown = (expiresAt) => {
+    //   const intervalId = setInterval(() => {
+    //     const currentTime = Date.now();
+    //     const timeLeft = expiresAt - currentTime;
+
+    //     if (timeLeft <= 0) {
+    //       clearInterval(intervalId);
+    //       process.stdout.write("\rToken expired\n");
+    //     } else {
+    //       const minutesLeft = Math.floor(timeLeft / 1000 / 60);
+    //       const secondsLeft = Math.floor((timeLeft / 1000) % 60);
+    //       process.stdout.write(
+    //         `\rTime left: ${minutesLeft} minutes, ${secondsLeft} seconds`
+    //       );
+    //     }
+
+    //   }, 1000);
+    // };
+
     const startCountdown = (expiresAt) => {
-      const intervalId = setInterval(() => {
+      let countdownState = {
+        timeLeft: null,
+        expired: false,
+      };
+
+      const updateCountdownState = () => {
         const currentTime = Date.now();
         const timeLeft = expiresAt - currentTime;
 
         if (timeLeft <= 0) {
           clearInterval(intervalId);
-          process.stdout.write("\rToken expired\n"); // Move to a new line after expiration
+          process.stdout.write(`\r${countdownState.timeLeft}\n`);
+          console.log("\nToken expired");
+          
+          
         } else {
           const minutesLeft = Math.floor(timeLeft / 1000 / 60);
           const secondsLeft = Math.floor((timeLeft / 1000) % 60);
-          process.stdout.write(`\rTime left: ${minutesLeft} minutes, ${secondsLeft} seconds`);
-          return `${minutesLeft}:${secondsLeft}`;
+          countdownState = {
+            timeLeft: `Time left: ${minutesLeft} minutes, ${secondsLeft} seconds`,
+            expired: false,
+          };
+          process.stdout.write(
+            `\rTime left: ${minutesLeft} minutes, ${secondsLeft} seconds`
+          );
         }
-      }, 1000);
+      };
 
-       
+      const intervalId = setInterval(updateCountdownState, 1000);
+
+      // Update the state once immediately
+      updateCountdownState();
+
+      return () => countdownState;
     };
 
+    const getLiveCountdown = startCountdown(expiresAt);
+
+    // console.log(getLiveCountdown());
 
 
     const timeLeftMessage = calculateTimeLeft(expiresAt, currentTime);
     const expiresAt12HourFormat = convertTo12HourFormat(expiresAt);
-    // const liveCountdown = startCountdown(expiresAt);
-
-    startCountdown(expiresAt)
+    const test = getLiveCountdown(expiresAt)
 
     return res.status(200).json({
       message: "loginok",
@@ -158,8 +196,7 @@ router.post("/login", async (req, res) => {
       expiresAt,
       timeLeftMessage,
       expiresAt12HourFormat,
-      // liveCountdown,
-
+      test,
     });
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
@@ -167,6 +204,21 @@ router.post("/login", async (req, res) => {
     console.log("JWT_SECRET:", process.env.JWT_PRIVATE_KEY);
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Protected route example
 router.get("/protected", verifyToken, (req, res) => {
