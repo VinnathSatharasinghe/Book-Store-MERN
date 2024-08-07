@@ -5,6 +5,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../css/log.css"; 
+import { useAuth } from "../components/Auth/AuthContext.tsx";
+
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,6 +14,8 @@ function Admin_login() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+  const { alogin } = useAuth();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +39,15 @@ function Admin_login() {
 
         } else if (result.data.message == "adminloginok") {
           toast.success("Admin Login Successful!");
+
+          const token = result.data.token; 
+          const expiresAt = result.data.expiresAt;
+
+          localStorage.setItem("token", token);
+          localStorage.setItem("tokenExpiration", expiresAt);
+          alogin(token, expiresAt);
+  
+
           setTimeout(() => {
             navigate("/aafterlogin", {
               state: {

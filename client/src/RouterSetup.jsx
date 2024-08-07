@@ -1,4 +1,4 @@
-import { AuthProvider } from "./components/Auth/AuthContext.tsx"; // Import AuthProvider
+import { AuthProvider } from "./components/Auth/AuthContext.tsx";
 import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -11,6 +11,7 @@ import Book from "./pages/Admin_afterlogin/Add_book";
 import ALogin from "./pages/Admin_login";
 import ASignup from "./pages/Admin_signup";
 import Uupdate from "./pages/User_afterlogin/Update_user";
+import Aupdate from "./pages/Admin_afterlogin/Update_admin.jsx";
 import Userafterlogin from "./pages/User_afterlogin/User-afterlogin";
 import Vbook from "./pages/Admin_afterlogin/BooksTable";
 import Alluser from "./pages/Admin_afterlogin/All_users";
@@ -18,7 +19,8 @@ import Bookupdate from "./pages/Admin_afterlogin/Bookupdate";
 import Adminafterlogin from "./pages/Admin_afterlogin/Admin-afterlog";
 import Allbooks from "./pages/Books";
 import AllAdmins from "./pages/Admin_afterlogin/All_admins";
-import ProtectedRoute from "./components/routes/ProtectedRoute"; // Update path as needed
+
+import ProtectedRoute from "./components/routes/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +56,10 @@ const router = createBrowserRouter([
     element: <Uupdate />,
   },
   {
+    path: "/aupdate",
+    element: <Aupdate />,
+  },
+  {
     path: "/uafterlogin",
     element: (
       <ProtectedRoute>
@@ -63,7 +69,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/aafterlogin",
-    element: <Adminafterlogin />,
+    element: (
+      <ProtectedRoute>
+        <Adminafterlogin />
+        </ProtectedRoute>
+    ),
   },
   {
     path: "/alluser",
@@ -93,7 +103,7 @@ const router = createBrowserRouter([
 
 const RouterSetup = () => (
   <AuthProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </AuthProvider>
 );
 
