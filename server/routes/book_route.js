@@ -1,11 +1,21 @@
 const router = require("express").Router();
+const jwt = require("jsonwebtoken");
 
 const Book = require("../models/book");
+const Admin = require("../models/admin")
+const verifyToken = require("../middleware/verifyToken");
 
 // add book
-router.post("/books", async (req, res) => {
+router.post("/books",verifyToken, async (req, res) => {
   try {
     const { url, title, author, price, desc, language } = req.body;
+    const { id } = req.headers;
+    const admin = await Admin.findById(id);
+
+    if (admin.role !== "user") {
+      console.log("not authorized");
+      return res.status(403).json({ message: "notauthorized" });
+    }
 
     if (!title) {
       return res.status(200).json({ message: "notitle" });
@@ -27,6 +37,7 @@ router.post("/books", async (req, res) => {
     if (bookExists) {
       return res.status(200).json({ message: "oldbook" });
     }
+
 
     const newBook = new Book({
       url: url,
@@ -60,12 +71,11 @@ router.get("/vbook", async (req, res) => {
 });
 
 router.get("/books/view/:id", async (req, res) => {
-  
   try {
     const bookId = req.params.id;
     const book = await Book.findById(bookId);
     console.log(`GET /vbook/${bookId} route hit`);
-    
+
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }

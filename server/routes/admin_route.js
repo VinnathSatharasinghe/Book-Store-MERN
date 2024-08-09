@@ -68,7 +68,7 @@ router.post("/admin-login", async (req, res) => {
     }
 
     const token = jwt.sign({ id: admin._id, username: admin.username }, process.env.JWT_PRIVATE_KEY, {
-      expiresIn: "1m",
+      expiresIn: "15m",
     });
 
     const decodedToken = jwt.decode(token);
@@ -127,7 +127,7 @@ router.get('/nadmins', async (req, res) => {
 
   try{
     const admins = await Admin.find({});
-    // console.log("Users fetched: ", admins); 
+    console.log("Users fetched: ", admins); 
     res.status(200).json(admins);
     
   }catch (err){
