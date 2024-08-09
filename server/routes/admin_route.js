@@ -68,7 +68,7 @@ router.post("/admin-login", async (req, res) => {
     }
 
     const token = jwt.sign({ id: admin._id, username: admin.username }, process.env.JWT_PRIVATE_KEY, {
-      expiresIn: "20s",
+      expiresIn: "1m",
     });
 
     const decodedToken = jwt.decode(token);
@@ -104,6 +104,7 @@ router.post("/admin-login", async (req, res) => {
   }
 });
 
+//all admins with verifyToken
 router.get('/admins', verifyToken, async (req, res) => {
   console.log("GET /users route hit"); 
 
@@ -116,6 +117,25 @@ router.get('/admins', verifyToken, async (req, res) => {
     console.error("Error fetching users:", err); // Log the error
   }
 });
+
+
+//all admins with NOOO !! verifyToken
+
+
+router.get('/nadmins', async (req, res) => {
+  console.log("GET /users route hit"); 
+
+  try{
+    const admins = await Admin.find({});
+    // console.log("Users fetched: ", admins); 
+    res.status(200).json(admins);
+    
+  }catch (err){
+    res.status(500).json({ message: "Server error" });
+    console.error("Error fetching users:", err); // Log the error
+  }
+});
+
 
 router.get('/admin-info/:id', verifyToken, async (req, res) => {
   try {

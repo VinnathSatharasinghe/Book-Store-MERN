@@ -1,19 +1,30 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import '../../css/allbooks.css';
 
 
 const AdminCards = () => {
     const [admins, setAdmins] = useState([]);
+    const navigate = useNavigate();
+
+
+    function prepage() {
+      
+      navigate("/aafterlogin", {
+      });
+    
+    }
   
     useEffect(() => {
       const fetchUsers = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/admins', {
+          const response = await axios.get('http://localhost:5000/api/nadmins', {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you store your JWT in localStorage
+              Authorization: `Bearer ${localStorage.getItem('token')}`, 
             },
           });
           setAdmins(response.data);
@@ -43,10 +54,12 @@ const AdminCards = () => {
   return (
     <div className="book-list">
       <h1>Admin List</h1>
+      <Button onClick={prepage}>After LOgin</Button>
       <div className="card-container">
         {admins.map((admin) => (
           <div key={admin.id} className="card">
             <h2>{admin.username}</h2>
+
             
             <p><strong>Admin:</strong> {admin.username}</p>
             <div className="card-actions">
