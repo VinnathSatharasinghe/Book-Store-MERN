@@ -20,6 +20,7 @@ import Adminafterlogin from "./pages/Admin_afterlogin/Admin-afterlog";
 import Allbooks from "./pages/Books";
 import AllAdmins from "./pages/Admin_afterlogin/All_admins";
 
+import UUpdate from "./redux/Test/Updateuser.jsx";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
   {
     path: "/allbooks",
     element: <Allbooks />,
+  },
+  {
+    path: "/tuu",
+    element: <UUpdate />,
   },
 ]);
 

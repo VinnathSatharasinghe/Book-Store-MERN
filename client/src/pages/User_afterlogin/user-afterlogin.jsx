@@ -7,8 +7,12 @@ function Afterlogin() {
   const location = useLocation();
   const { id, name, _email, _address } = location.state || {};
 
+  // const handleUpdateUser = () => {
+  //   navigate("/uupdate", { state: { id, name, _email, _address } });
+  // };
+
   const handleUpdateUser = () => {
-    navigate("/uupdate", { state: { id, name, _email, _address } });
+    navigate("/tuu", { state: { id, name, _email, _address } });
   };
 
   const handleAllUser = () => {

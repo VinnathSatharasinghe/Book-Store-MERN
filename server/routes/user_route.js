@@ -119,24 +119,7 @@ router.post("/login", async (req, res) => {
       return `${hours}:${minutesFormatted}:${secondsFormatted} ${ampm}`;
     };
 
-    // const startCountdown = (expiresAt) => {
-    //   const intervalId = setInterval(() => {
-    //     const currentTime = Date.now();
-    //     const timeLeft = expiresAt - currentTime;
 
-    //     if (timeLeft <= 0) {
-    //       clearInterval(intervalId);
-    //       process.stdout.write("\rToken expired\n");
-    //     } else {
-    //       const minutesLeft = Math.floor(timeLeft / 1000 / 60);
-    //       const secondsLeft = Math.floor((timeLeft / 1000) % 60);
-    //       process.stdout.write(
-    //         `\rTime left: ${minutesLeft} minutes, ${secondsLeft} seconds`
-    //       );
-    //     }
-
-    //   }, 1000);
-    // };
 
     const startCountdown = (expiresAt) => {
       let countdownState = {

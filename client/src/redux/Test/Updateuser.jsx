@@ -1,13 +1,15 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
-import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "../../css/log.css"; 
+import "../../css/log.css";
 import "react-toastify/dist/ReactToastify.css";
 
-import UserNavBar from "./User_navbar";
+import { updateUser } from "../../redux/slices/userSlice.js";
+
+
 
 function Updateuser() {
   const location = useLocation();
@@ -16,7 +18,11 @@ function Updateuser() {
   const [username, setUsername] = useState(name);
   const [email, setEmail] = useState(_email);
   const [address, setAddress] = useState(_address);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const loading = useSelector((state) => state.user.loading);
+  const error = useSelector((state) => state.user.error);
 
   const handleNavigation = () => {
     toast.success("Let's go to the home page");
@@ -27,40 +33,21 @@ function Updateuser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const token = localStorage.getItem("token"); // Get the token from localStorage
-
-    axios
-      .post(`http://localhost:5000/api/user-update/${id}`, {
-        username,
-        email,
-        address,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}` // Include the token in the headers
-        }
-      })
-      .then((result) => {
-        console.log(result);
-
-        if (result.data.message === "userok") {
-          toast.success("Update Successful!", { autoClose: 5000 });
-          setTimeout(() => {
-            navigate("/");
-          }, 1000);
-        } else {
-          toast.error(`Update Failed. ${result.data.message}`, { autoClose: 5000 });
-        }
+    dispatch(updateUser({ id, username, email, address }))
+      .unwrap()
+      .then(() => {
+        toast.success("Update Successful!", { autoClose: 5000 });
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
       })
       .catch((err) => {
-        console.log(err);
-        toast.error(`Update Failed. ${err.response?.data?.message || err.message}`);
+        toast.error(`Update Failed. ${err}`);
       });
   };
 
   return (
     <div>
-      <UserNavBar />
       <div className="mainx">
         <div className="formx">
           <Form onSubmit={handleSubmit}>
@@ -119,8 +106,8 @@ function Updateuser() {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Update
+            <Button variant="primary" type="submit" disabled={loading}>
+              {loading ? "Updating..." : "Update"}
             </Button>
 
             <ToastContainer
@@ -140,6 +127,8 @@ function Updateuser() {
           <Button onClick={handleNavigation} variant="primary" type="button">
             Home
           </Button>
+
+          {error && <p className="error-message">Update Failed: {error}</p>}
         </div>
       </div>
     </div>
@@ -147,6 +136,3 @@ function Updateuser() {
 }
 
 export default Updateuser;
-
-
-
