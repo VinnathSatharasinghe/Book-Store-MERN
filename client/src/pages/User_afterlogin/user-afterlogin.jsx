@@ -16,7 +16,7 @@ function Afterlogin() {
   };
 
   const handleAllUser = () => {
-    navigate("/auser", { state: { id, name, _email, _address } });
+    navigate("/alluser", { state: { id, name, _email, _address } });
   };
 
   return (
@@ -27,7 +27,7 @@ function Afterlogin() {
       <p>Address: {_address}</p>
       <Button variant="primary" type="login" onClick={handleUpdateUser}>Update User Info</Button>
       <br />
-      <Button variant="primary" type="login" onClick={handleAllUser}>Update User Info</Button>
+      <Button variant="primary" type="login" onClick={handleAllUser}>All User Info</Button>
     </div>
   );
 }
