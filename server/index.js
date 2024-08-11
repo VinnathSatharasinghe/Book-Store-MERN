@@ -18,10 +18,6 @@ app.use("/api", Admin);
 app.use("/api", Book);
 app.use("/api", Order);
 
-app.use("/api", User);
-app.use("/api", Admin);
-app.use("/api", Book);
-app.use("/api", Order);
 
 
 app.get("/", (req, res) => {

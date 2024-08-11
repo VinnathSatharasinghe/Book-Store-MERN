@@ -1,4 +1,4 @@
-import { AuthProvider } from "./components/Auth/AuthContext.tsx";
+// import { AuthProvider } from "./components/Auth/AuthContext.tsx";
 import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -24,8 +24,8 @@ import AllAdmins from "./pages/Admin_afterlogin/All_admins";
 import UUpdate from "./redux/Test/Updateuser.jsx";
 import Tlogin from "./redux/Test/testlogin.jsx";
 
-
-import ProtectedRoute from "./components/routes/ProtectedRoute";
+//ProtectedRoute
+import NewProtectedRoute from "./redux/routes/NewProtectedRoute.tsx";
 
 const router = createBrowserRouter([
   {
@@ -67,17 +67,17 @@ const router = createBrowserRouter([
   {
     path: "/uafterlogin",
     element: (
-      <ProtectedRoute>
+      <NewProtectedRoute>
         <Userafterlogin />
-      </ProtectedRoute>
+      </NewProtectedRoute>
     ),
   },
   {
     path: "/aafterlogin",
     element: (
-      <ProtectedRoute>
+
         <Adminafterlogin />
-        </ProtectedRoute>
+
     ),
   },
   {
@@ -115,9 +115,9 @@ const router = createBrowserRouter([
 ]);
 
 const RouterSetup = () => (
-  <AuthProvider>
+
       <RouterProvider router={router} />
-  </AuthProvider>
+
 );
 
 export default RouterSetup;

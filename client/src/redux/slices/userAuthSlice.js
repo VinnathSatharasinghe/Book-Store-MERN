@@ -89,7 +89,7 @@ const authSlice = createSlice({
     tokenExpiration: null,
     test: null,
     user: null,
-    isAuthenticated: false,
+    isAuthenticated: true,
   },
   reducers: {
     loginSuccess: (state, action) => {
@@ -99,6 +99,7 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.isAuthenticated = true;
     },
+    
     logout: (state) => {
       state.token = null;
       state.tokenExpiration = null;

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer} from "react-toastify";
-import { login } from "../slices/userAuthSlice.js"; // Import the Redux action
+import { login } from "../slices/userAuthSlice.js";
 import "../../css/log.css";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -21,6 +21,11 @@ function Login() {
     dispatch(login(username, password))
       .then((action) => {
         if (action.success) {
+          console.log("User is authenticated:", action.user);
+          console.log(location.state);
+
+          // console.log("isAuthenticated state:", store.getState().userauth.isAuthenticated);
+
           setTimeout(() => {
             navigate("/uafterlogin", {
               state: {
