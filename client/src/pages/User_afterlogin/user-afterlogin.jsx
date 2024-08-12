@@ -12,7 +12,7 @@ function Afterlogin() {
     _address: "N/A",
   };
 
-  console.log(location.state);
+  // console.log(location.state);
 
 
 

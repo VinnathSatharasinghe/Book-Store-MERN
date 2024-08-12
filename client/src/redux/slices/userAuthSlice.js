@@ -2,12 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-
 const initialState = {
-  token: localStorage.getItem('token'),
-  tokenExpiration: localStorage.getItem('tokenExpiration'),
-  isAuthenticated: !!localStorage.getItem('token'),
-  user: JSON.parse(localStorage.getItem('user')) || null,
+  token: localStorage.getItem("token"),
+  tokenExpiration: localStorage.getItem("tokenExpiration"),
+  isAuthenticated: !!localStorage.getItem("token"),
+  user: JSON.parse(localStorage.getItem("user")) || null,
 };
 
 const authSlice = createSlice({
@@ -21,13 +20,12 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.isAuthenticated = true;
 
-          // Store the values in local storage
-          localStorage.setItem('token', action.payload.token);
-          localStorage.setItem('tokenExpiration', action.payload.expiresAt);
-          localStorage.setItem('user', JSON.stringify(action.payload.user));
-
+      // Store the values in local storage
+      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("tokenExpiration", action.payload.expiresAt);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
     },
-    
+
     logout: (state) => {
       state.token = null;
       state.tokenExpiration = null;
@@ -35,10 +33,9 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
 
-        // Clear the local storage
-        localStorage.removeItem('token');
-        localStorage.removeItem('tokenExpiration');
-        localStorage.removeItem('user');
+      localStorage.removeItem("token");
+      localStorage.removeItem("tokenExpiration");
+      localStorage.removeItem("user");
     },
   },
 });
@@ -72,8 +69,7 @@ export const login = (username, password) => async (dispatch) => {
       return Promise.resolve({ success: true, user });
     } else {
       let errorMsg = "Login Failed. No record existed.";
-      if (result.message === "nousername") 
-        errorMsg = "Login Failed. No user.";
+      if (result.message === "nousername") errorMsg = "Login Failed. No user.";
       else if (result.message === "caseusername")
         errorMsg = "Login Failed. No user existed.";
       else if (result.message === "nopassword")
@@ -96,7 +92,3 @@ export const login = (username, password) => async (dispatch) => {
 };
 
 export default authSlice.reducer;
-
-
-
-
