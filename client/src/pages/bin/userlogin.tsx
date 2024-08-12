@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../src/css/log.css";
-import { useAuth } from "../src/components/Auth/AuthContext";
+import { useAuth } from "../../components/Auth/AuthContext";
 
 import "react-toastify/dist/ReactToastify.css";
 

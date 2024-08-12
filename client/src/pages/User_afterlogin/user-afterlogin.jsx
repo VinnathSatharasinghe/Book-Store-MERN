@@ -14,9 +14,7 @@ function Afterlogin() {
 
   console.log(location.state);
 
-  // const handleUpdateUser = () => {
-  //   navigate("/uupdate", { state: { id, name, _email, _address } });
-  // };
+
 
   const handleUpdateUser = () => {
     navigate("/tuu", { state: { id, name, _email, _address } });

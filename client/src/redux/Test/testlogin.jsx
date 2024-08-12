@@ -21,6 +21,16 @@ function Login() {
     dispatch(login(username, password))
       .then((action) => {
         if (action.success) {
+          console.log("Navigating to /uafterlogin with state:", {
+            id: action.user.id,
+            name: action.user.username,
+            _email: action.user.email,
+            _address: action.user.address,
+          });
+
+        }
+
+        if (action.success) {
           console.log("User is authenticated:", action.user);
           console.log(location.state);
 
