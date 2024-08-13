@@ -7,9 +7,9 @@
   color: rgba(255, 255, 255, 0.87);
   background-color:black;
 
-  text-rendering: optimizeLegibility;
+  /* text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
 }
 
 /* a {

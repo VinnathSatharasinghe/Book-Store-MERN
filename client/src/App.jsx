@@ -1,14 +1,17 @@
-// App.js
 import "./App.css";
 import RouterSetup from "./RouterSetup";
 import StarsCanvas from "./components/Animation/StarsCanvas";
 
+
+
 function App() {
   return (
-    <div>
-      <StarsCanvas />
-      <RouterSetup />
-    </div>
+    <>
+    <StarsCanvas />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <RouterSetup />
+      </div>
+    </>
   );
 }
 
