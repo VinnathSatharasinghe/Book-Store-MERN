@@ -31,8 +31,8 @@ function Login() {
         }
 
         if (action.success) {
-          // console.log("User is authenticated:", action.user);
-          // console.log(location.state);
+          console.log("User is authenticated:", action.user);
+          console.log(location.state);
 
           setTimeout(() => {
             navigate("/uafterlogin", {

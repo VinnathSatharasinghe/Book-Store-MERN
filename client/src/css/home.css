@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
 
-
-
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -11,7 +9,7 @@
 
   color-scheme: lightdark;
   color: rgba(255, 255, 255, 0.87);
-  background: url('../../public/books/book3.jpg');
+  /* background: url('../../public/books/book3.jpg'); */
   background-size: 100%;
   background-repeat: no-repeat;
   

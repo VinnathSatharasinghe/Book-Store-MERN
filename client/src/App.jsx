@@ -1,42 +1,18 @@
 // App.js
-import './App.css';
-import RouterSetup from './RouterSetup'; // Import the new RouterSetup component
+import "./App.css";
+import RouterSetup from "./RouterSetup";
+import StarsCanvas from "./components/Animation/StarsCanvas";
 
 function App() {
   return (
     <div>
+      <StarsCanvas />
       <RouterSetup />
     </div>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import './App.css'
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -59,10 +35,7 @@ export default App;
 // import Allbooks from './pages/Books';
 // import AllAdmins from './pages/Admin_afterlogin/All_admins'
 
-
-
 // import ProtectedRoute from './components/routes/ProtectedRoute.tsx';
-
 
 // const router = createBrowserRouter([
 
@@ -110,7 +83,6 @@ export default App;
 //     // element: <Userafterlogin/>,
 //     element: <ProtectedRoute component={Userafterlogin} />,
 
-
 //   },
 
 //   {
@@ -149,9 +121,7 @@ export default App;
 
 //   },
 
-
 // ]);
-
 
 // function App() {
 //   return (
@@ -163,19 +133,6 @@ export default App;
 
 // export default App;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // function App() {
 //   const [user, setUser] = useState();
 
@@ -185,8 +142,6 @@ export default App;
 //     </UserContext.Provider>
 //   );
 // }
-
-
 
 // const App = () => {
 //   return (
@@ -204,4 +159,3 @@ export default App;
 // };
 
 // export default App;
-
