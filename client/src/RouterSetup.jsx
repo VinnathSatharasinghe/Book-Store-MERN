@@ -4,7 +4,6 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Home from "./pages/Home";
 import NavBar from "./navbar/Navogation";
-import UserNavBar from "./pages/User_afterlogin/User_navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Singup";
 import Book from "./pages/Admin_afterlogin/Add_book";
@@ -35,10 +34,6 @@ const router = createBrowserRouter([
   {
     path: "/nav",
     element: <NavBar />,
-  },
-  {
-    path: "/unav",
-    element: <UserNavBar />,
   },
   {
     path: "/login",
