@@ -35,9 +35,6 @@
 
   }
   
-  /* Form.Label {
-    font-weight: bold;
-  } */
 
   input[type="password"]::placeholder,
   input[type="text"]::placeholder {

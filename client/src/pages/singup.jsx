@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "../css/log.css"; //use same css used for login page
+import "../css/log.css"; 
  
 import "react-toastify/dist/ReactToastify.css";
 
@@ -60,7 +60,7 @@ function Singup() {
           <Form onSubmit={handleSubmit}>
             <h4>Login Now</h4>
             <Form.Group className="mb-3" controlId="formBasicUsername">
-              {/* <Form.Label>Username</Form.Label> */}
+              <Form.Label>Username</Form.Label>
               <br />
               <input
                 type="text"
@@ -73,7 +73,7 @@ function Singup() {
             </Form.Group>
             <br />
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              {/* <Form.Label>Password</Form.Label> */}
+              <Form.Label>Password</Form.Label>
               <br />
               <input
                 type="password"
@@ -86,7 +86,7 @@ function Singup() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              {/* <Form.Label>Password</Form.Label> */}
+              <Form.Label>Email</Form.Label>
               <br />
               <input
                 type="email"
