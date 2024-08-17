@@ -1,6 +1,6 @@
 
 .navbar {
-  background-color: red; 
+  /* background-color: red;  */
   border-radius: 0px 0px 20px 20px !important;
   
 }
@@ -8,7 +8,7 @@
 .navbar-brand img {
   width: 120px;
   height: 90px;
-  margin-left: 20px;
+  margin-left: 21px;
 
 }
 
