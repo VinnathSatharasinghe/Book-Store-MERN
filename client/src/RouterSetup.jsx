@@ -5,7 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import NavBar from "./navbar/Navogation";
 import Login from "./pages/Login";
-// import Signup from "./pages/Singup";
+import Signup from "./pages/Singup";
 import Book from "./pages/Admin_afterlogin/Add_book";
 import ALogin from "./pages/Admin_login";
 import ASignup from "./pages/Admin_signup";
@@ -43,10 +43,10 @@ const router = createBrowserRouter([
     path: "/alogin",
     element: <ALogin />,
   },
-  // {
-  //   path: "/signup",
-  //   element: <Signup />,
-  // },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
   {
     path: "/asignup",
     element: <ASignup />,
