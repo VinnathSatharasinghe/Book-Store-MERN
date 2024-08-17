@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import Book from "./pages/Admin_afterlogin/Add_book";
 // import ALogin from "./pages/Admin_login";
 import ASignup from "./pages/Admin_signup";
-import Uupdate from "./pages/User_afterlogin/Update_user";
+// import Uupdate from "./pages/User_afterlogin/Update_user";
 import Aupdate from "./pages/Admin_afterlogin/Update_admin.jsx";
 // import Userafterlogin from "./pages/User_afterlogin/User-afterlogin";
 import Vbook from "./pages/Admin_afterlogin/BooksTable";
@@ -51,10 +51,10 @@ const router = createBrowserRouter([
     path: "/asignup",
     element: <ASignup />,
   },
-  {
-    path: "/uupdate",
-    element: <Uupdate />,
-  },
+  // {
+  //   path: "/uupdate",
+  //   element: <Uupdate />,
+  // },
   {
     path: "/aupdate",
     element: <Aupdate />,
