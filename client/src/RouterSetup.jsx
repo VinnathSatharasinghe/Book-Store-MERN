@@ -5,13 +5,13 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import NavBar from "./navbar/Navogation";
 import Login from "./pages/Login";
-import Signup from "./pages/Singup.jsx";
+// import Signup from "./pages/Singup.jsx";
 import Book from "./pages/Admin_afterlogin/Add_book";
-import ALogin from "./pages/Admin_login";
+// import ALogin from "./pages/Admin_login";
 import ASignup from "./pages/Admin_signup";
 import Uupdate from "./pages/User_afterlogin/Update_user";
 import Aupdate from "./pages/Admin_afterlogin/Update_admin.jsx";
-import Userafterlogin from "./pages/User_afterlogin/User-afterlogin";
+// import Userafterlogin from "./pages/User_afterlogin/User-afterlogin";
 import Vbook from "./pages/Admin_afterlogin/BooksTable";
 import Alluser from "./pages/Admin_afterlogin/All_users";
 import Bookupdate from "./pages/Admin_afterlogin/Bookupdate";
@@ -20,11 +20,11 @@ import Allbooks from "./pages/Books";
 import AllAdmins from "./pages/Admin_afterlogin/All_admins";
 
 //testing
-import UUpdate from "./redux/Test/Updateuser.jsx";
-import Tlogin from "./redux/Test/testlogin.jsx";
+// import UUpdate from "./redux/Test/Updateuser.jsx";
+// import Tlogin from "./redux/Test/testlogin.jsx";
 
 //ProtectedRoute
-import NewProtectedRoute from "./redux/routes/Testprotect";
+// import NewProtectedRoute from "./redux/routes/Testprotect";
 
 const router = createBrowserRouter([
   {
@@ -39,14 +39,14 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  {
-    path: "/alogin",
-    element: <ALogin />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
+  // {
+  //   path: "/alogin",
+  //   element: <ALogin />,
+  // },
+  // {
+  //   path: "/signup",
+  //   element: <Signup />,
+  // },
   {
     path: "/asignup",
     element: <ASignup />,
@@ -59,14 +59,14 @@ const router = createBrowserRouter([
     path: "/aupdate",
     element: <Aupdate />,
   },
-  {
-    path: "/uafterlogin",
-    element: (
-      <NewProtectedRoute>
-        <Userafterlogin />
-      </NewProtectedRoute>
-    ),
-  },
+  // {
+  //   path: "/uafterlogin",
+  //   element: (
+  //     <NewProtectedRoute>
+  //       <Userafterlogin />
+  //     </NewProtectedRoute>
+  //   ),
+  // },
   {
     path: "/aafterlogin",
     element: <Adminafterlogin />,
@@ -95,14 +95,14 @@ const router = createBrowserRouter([
     path: "/allbooks",
     element: <Allbooks />,
   },
-  {
-    path: "/tuu",
-    element: <UUpdate />,
-  },
-  {
-    path: "/tl",
-    element: <Tlogin />,
-  },
+  // {
+  //   path: "/tuu",
+  //   element: <UUpdate />,
+  // },
+  // {
+  //   path: "/tl",
+  //   element: <Tlogin />,
+  // },
 ]);
 
 const RouterSetup = () => (
