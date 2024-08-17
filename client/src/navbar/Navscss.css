@@ -1,6 +1,6 @@
 
 .navbar {
-  /* background-color: red;  */
+
   border-radius: 0px 0px 20px 20px !important;
   
 }
@@ -34,9 +34,9 @@
 .pagers{
   display: flex;
   gap: 10px;
-  justify-content: center; /* Center the nav items horizontally */
-  align-items: center; /* Center the nav items vertically */
-  margin-top: -60px; /* Adjust the margin if needed */
+  justify-content: center; 
+  align-items: center; 
+  margin-top: -60px; 
 }
 
 
