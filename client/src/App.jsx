@@ -1,7 +1,7 @@
 import "./App.css";
 import RouterSetup from "./RouterSetup";
 import StarsCanvas from "./components/Animation/StarsCanvas";
-
+import NavBar from "./navbar/Navogation";
 
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
     <>
     <StarsCanvas />
       <div style={{ position: 'relative', zIndex: 1 }}>
+      <NavBar />
         <RouterSetup />
       </div>
     </>
