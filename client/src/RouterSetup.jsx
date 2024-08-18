@@ -5,7 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import NavBar from "./navbar/Navigation.jsx";
-// import ALogin from "./pages/Admin_login.jsx";
+import ALogin from "./pages/Adminlogin.jsx";
 
 // import Signup from "./pages/Singup.jsx";
 // import Book from "./pages/Admin_afterlogin/Add_book";
@@ -40,10 +40,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  // {
-  //   path: "/alogin",
-  //   element: <ALogin />,
-  // },
+  {
+    path: "/alogin",
+    element: <ALogin />,
+  },
    //{
   //   path: "/signup",
   //   element: <Signup />,

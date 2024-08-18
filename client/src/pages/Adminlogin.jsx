@@ -5,10 +5,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../css/log.css"; 
-import { useAuth } from "../components/Auth/AuthContext.tsx";
+import { useAuth } from "../components/Auth/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
 
-function Admin_login() {
+function Adminlogin() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
@@ -121,6 +121,6 @@ function Admin_login() {
   );
 }
 
-export default Admin_login;
+export default Adminlogin;
 
 
