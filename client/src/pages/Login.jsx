@@ -39,8 +39,8 @@ function Login() {
           
         } else if (result.data.message === "loginok") {
 
-          const token = result.data.token; // Get the token from the response
-          const expiresAt = result.data.expiresAt; // Get the expiration time in seconds from the response
+          const token = result.data.token; 
+          const expiresAt = result.data.expiresAt; 
           const expiresAt12HourFormat  = result.data.expiresAt12HourFormat;
           const test  = result.data.test;
         

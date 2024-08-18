@@ -7,7 +7,7 @@ import StarsCanvas from "./components/Animation/StarsCanvas";
 function App() {
   return (
     <>
-    <StarsCanvas />
+    {/* <StarsCanvas /> */}
       <div style={{ position: 'relative', zIndex: 1 }}>
         <RouterSetup />
       </div>
