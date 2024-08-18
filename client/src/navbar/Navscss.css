@@ -1,4 +1,4 @@
-
+/* 
 .navbar {
 
   border-radius: 0px 0px 20px 20px !important;
@@ -41,10 +41,57 @@
 
 
 
-
 @media (max-width: 768px) {
   .navbar-brand,
   .nav-link {
     font-size: 1rem; 
   }
+} */
+
+
+.navbar {
+  border-radius: 0 0 20px 20px; /* Simplified the border-radius values */
 }
+
+.navbar-brand img {
+  width: 120px;
+  height: 90px;
+  margin-left: 21px;
+}
+
+.nav-link {
+  font-family: "Audiowide", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-align: right; /* Adjusted, assuming it's for the text within the link */
+}
+
+.nav-link:hover {
+  color: red;
+  font-size: 1.4rem;
+  transition: font-size 0.8s; /* Applied transition to the property you're animating */
+}
+
+.pagers {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: -60px;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand img {
+    width: 100px; /* Consider reducing image size for smaller screens */
+    height: auto; /* Keeps aspect ratio intact */
+    margin-left: 10px; /* Adjusting margin for smaller screens */
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+}
+
