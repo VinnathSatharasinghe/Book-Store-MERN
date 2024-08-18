@@ -7,12 +7,12 @@ import Login from "./pages/Login.jsx";
 import NavBar from "./navbar/Navigation.jsx";
 import ALogin from "./pages/Adminlogin.jsx";
 import Signup from "./pages/Signup.jsx";
-import Uupdate from "./pages/User_afterlogin/Userafterlogin.jsx";
+import Uupdate from "./pages/UserAfterlogin/Updateuser.jsx";
 
 import Book from "./pages/Admin_afterlogin/Add_book";
 import ASignup from "./pages/Admin_signup";
 import Aupdate from "./pages/Admin_afterlogin/Update_admin.jsx";
-import Userafterlogin from "./pages/User_afterlogin/Userafterlogin.jsx";
+import Userafterlogin from "./pages/UserAfterlogin/Userafterlogin.jsx";
 import Vbook from "./pages/Admin_afterlogin/BooksTable";
 import Alluser from "./pages/Admin_afterlogin/All_users";
 import Bookupdate from "./pages/Admin_afterlogin/Bookupdate";
