@@ -3,11 +3,12 @@ import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NavBar from "./navbar/Navigation";
+import ALogin from "./pages/Admin_login";
 
-// import Login from "./pages/Login";
 // import Signup from "./pages/Singup.jsx";
 // import Book from "./pages/Admin_afterlogin/Add_book";
-// import ALogin from "./pages/Admin_login";
 // import ASignup from "./pages/Admin_signup";
 // import Uupdate from "./pages/User_afterlogin/Update_user";
 // import Aupdate from "./pages/Admin_afterlogin/Update_admin.jsx";
@@ -31,19 +32,19 @@ const router = createBrowserRouter([
     path: "/",
     element: <Home />,
   },
-  // {
-  //   path: "/nav",
-  //   element: <NavBar />,
-  // },
-  // {
-  //   path: "/login",
-  //   element: <Login />,
-  // },
-  // {
-  //   path: "/alogin",
-  //   element: <ALogin />,
-  // },
-  // {
+  {
+    path: "/nav",
+    element: <NavBar />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+   {
+     path: "/alogin",
+     element: <ALogin />,
+   },
+   //{
   //   path: "/signup",
   //   element: <Signup />,
   // },
