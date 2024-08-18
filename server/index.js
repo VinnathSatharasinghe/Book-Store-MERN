@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 require('dotenv').config();
-require("./conn/conn")
+require("./conn/Connection")
 
-const User = require("./routes/user_route");
-const Admin = require("./routes/admin_route");
-const Book = require("./routes/book_route");
-const Order = require("./routes/order_route");
+const User = require("./routes/Userroute");
+const Admin = require("./routes/Adminroute");
+const Book = require("./routes/Bookroute");
+const Order = require("./routes/Orderroute");
 
 const cors = require('cors');
 app.use(cors({
