@@ -1,5 +1,5 @@
 import "../css/home.css";
-import Nav from "../navbar/Navogation";
+import Nav from "../navbar/Navigation";
 
 import { Container, Row, Col } from "react-bootstrap";
 
