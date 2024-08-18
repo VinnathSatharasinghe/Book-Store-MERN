@@ -2,10 +2,10 @@ import { AuthProvider } from "./components/Auth/AuthContext.tsx";
 import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import NavBar from "./navbar/Navigation";
-import ALogin from "./pages/";
+import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import NavBar from "./navbar/Navigation.jsx";
+import ALogin from "./pages/Admin_login.jsx";
 
 // import Signup from "./pages/Singup.jsx";
 // import Book from "./pages/Admin_afterlogin/Add_book";
