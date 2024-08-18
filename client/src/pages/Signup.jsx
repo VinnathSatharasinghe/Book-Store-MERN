@@ -8,7 +8,7 @@ import "../css/log.css";
  
 import "react-toastify/dist/ReactToastify.css";
 
-function Singup() {
+function Signup() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
@@ -125,4 +125,4 @@ function Singup() {
   );
 }
 
-export default Singup;
+export default Signup;
