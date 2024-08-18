@@ -11,8 +11,8 @@ const Order = require("./routes/order_route");
 
 const cors = require('cors');
 app.use(cors({
-    origin: ["http://localhost:5000"],
-    methods:["GET", "HEAD", "OPTIONS", "POST"],
+    origin: ["https://book-store-mern-xp73.vercel.app"],
+    methods:["GET", "DELETE", "PUT", "POST"],
     credentials: true
 }));
 
