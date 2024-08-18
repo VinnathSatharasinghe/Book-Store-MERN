@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../css/log.css"; 
 import { useAuth } from "../components/Auth/AuthContext.tsx";
-
-
 import "react-toastify/dist/ReactToastify.css";
 
 function Admin_login() {

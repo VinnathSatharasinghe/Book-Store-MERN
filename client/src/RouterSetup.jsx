@@ -5,7 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NavBar from "./navbar/Navigation";
-import ALogin from "./pages/Admin_login";
+import ALogin from "./pages/";
 
 // import Signup from "./pages/Singup.jsx";
 // import Book from "./pages/Admin_afterlogin/Add_book";
