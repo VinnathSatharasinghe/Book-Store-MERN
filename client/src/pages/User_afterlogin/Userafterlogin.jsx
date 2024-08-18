@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Usernav from './User_navbar';
+import Usernav from './Usernavbar';
 
 function Afterlogin() {
   const navigate = useNavigate();
