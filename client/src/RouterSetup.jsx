@@ -6,8 +6,9 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import NavBar from "./navbar/Navigation.jsx";
 import ALogin from "./pages/Adminlogin.jsx";
+import Signup from "./pages/Singup.jsx";
 
-// import Signup from "./pages/Singup.jsx";
+
 // import Book from "./pages/Admin_afterlogin/Add_book";
 // import ASignup from "./pages/Admin_signup";
 // import Uupdate from "./pages/User_afterlogin/Update_user";
@@ -44,10 +45,10 @@ const router = createBrowserRouter([
     path: "/alogin",
     element: <ALogin />,
   },
-   //{
-  //   path: "/signup",
-  //   element: <Signup />,
-  // },
+   {
+    path: "/signup",
+    element: <Signup />,
+   },
   // {
   //   path: "/asignup",
   //   element: <ASignup />,
