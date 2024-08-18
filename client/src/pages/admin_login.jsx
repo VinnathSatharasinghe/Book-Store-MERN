@@ -47,7 +47,7 @@ function Admin_login() {
   
 
           setTimeout(() => {
-            navigate("/", {
+            navigate("/aafterlogin", {
               state: {
                  id: result.data.id,
                  name: result.data.name,
