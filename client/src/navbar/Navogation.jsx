@@ -1,7 +1,7 @@
 
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import "/client/src/navbar/navscss.css";
+import "./navscss.css";
 
 const Navigation = () => {
   return (
