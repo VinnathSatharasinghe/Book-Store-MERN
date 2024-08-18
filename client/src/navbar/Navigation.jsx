@@ -6,13 +6,13 @@ import "../css/navscss.css";
 const Navigation = () => {
   return (
     <Navbar bg="light" >
-      <Navbar.Brand>
+      {/* <Navbar.Brand>
         <img
           src=""
           className="d-inline-block align-top"
           alt="Logo"
         />
-      </Navbar.Brand>
+      </Navbar.Brand> */}
 
       <Navbar.Collapse>
         <Nav className="pagers">
