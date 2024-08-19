@@ -3,8 +3,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require('dotenv').config();
 
-const Admin = require("../models/admin");
-const verifyToken = require("../middleware/verifyToken");
+const Admin = require("../models/Admin");
+const verifyToken = require("../middleware/VerifyToken");
 // Sign up
 router.post("/admin-signup", async (req, res) => {
   try {

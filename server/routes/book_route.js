@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 
-const Book = require("../models/book");
-const Admin = require("../models/admin")
-const verifyToken = require("../middleware/verifyToken");
+const Book = require("../models/Book");
+const Admin = require("../models/Admin")
+const verifyToken = require("../middleware/VerifyToken");
 
 // add book
 router.post("/books",verifyToken, async (req, res) => {
