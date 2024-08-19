@@ -2,7 +2,7 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 
 const Book = require("../models/Book");
-const Admin = require("../models/Admin")
+const Admin = require("../models/admin")
 const verifyToken = require("../middleware/VerifyToken");
 
 // add book
