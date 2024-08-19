@@ -44,7 +44,7 @@ export const { loginSuccess, logout } = authSlice.actions;
 
 export const login = (username, password) => async (dispatch) => {
   try {
-    const response = await axios.post("https://book-store-mern-backend-hazel.vercel.app", {
+    const response = await axios.post("https://book-store-mern-backend-hazel.vercel.app/api/login", {
       username,
       password,
     });
