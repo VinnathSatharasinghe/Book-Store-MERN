@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const Book = require("../models/Order");
+const Book = require("../models/order");
 
 // add book
 router.post("/orders", async (req, res) => {
