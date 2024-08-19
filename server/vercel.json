@@ -1,0 +1,21 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "index.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/index.js"
+      }
+    ],
+    "env": {
+      "PORT": "3000",
+      "JWT_PRIVATE_KEY": "@jwt_private_key",
+      "ANOTHER_ENV_VARIABLE": "@another_env_variable"
+    }
+  }
+  
