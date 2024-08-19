@@ -1,15 +1,15 @@
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "/index.jsx",
-      "use": "@vercel/static-build"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ]
-}
+// {
+//   "version": 2,
+//   "builds": [
+//     {
+//       "src": "/index.jsx",
+//       "use": "@vercel/static-build"
+//     }
+//   ],
+//   "routes": [
+//     {
+//       "src": "/(.*)",
+//       "dest": "/"
+//     }
+//   ]
+// }
