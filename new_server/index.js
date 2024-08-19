@@ -4,10 +4,10 @@ app.use(express.json());
 require('dotenv').config();
 require("./Connection")
 
-// const User = require("./routes/Userroute");
-// const Admin = require("./routes/Adminroute");
-// const Book = require("./routes/Bookroute");
-// const Order = require("./routes/Orderroute");
+const User = require("./routes/Userroute");
+const Admin = require("./routes/Adminroute");
+const Book = require("./routes/Bookroute");
+const Order = require("./routes/Orderroute");
 
 const cors = require('cors');
 app.use(cors({
@@ -17,10 +17,10 @@ app.use(cors({
 }));
 
 
-// app.use("/api", User);
-// app.use("/api", Admin);
-// app.use("/api", Book);
-// app.use("/api", Order);
+app.use("/api", User);
+app.use("/api", Admin);
+app.use("/api", Book);
+app.use("/api", Order);
 
 
 
