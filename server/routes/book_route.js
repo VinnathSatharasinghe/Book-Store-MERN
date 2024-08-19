@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const Book = require("../models/book");
 const Admin = require("../models/admin")
-const verifyToken = require("../middleware/VerifyToken");
+const verifyToken = require("../middleware/verifyToken");
 
 // add book
 router.post("/books",verifyToken, async (req, res) => {

@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const User = require("../models/user");
-const verifyToken = require("../middleware/VerifyToken");
+const verifyToken = require("../middleware/verifyToken");
 
 // Sign up
 router.post("/signup", async (req, res) => {
