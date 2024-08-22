@@ -34,7 +34,7 @@ function Login() {
           console.log("User is authenticated:", action.user);
           console.log(location.state);
 
-          setTimeout(() => {
+  
             navigate("/uafterlogin", {
               state: {
                 id: action.user.id,
@@ -43,8 +43,8 @@ function Login() {
                 _address: action.user.address,
               },
             });
-          }, 1000);
         }
+        
       })
       .catch((err) => {
         console.log("Login failed, staying on the login page", err);
